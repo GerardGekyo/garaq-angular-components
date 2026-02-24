@@ -1,0 +1,47 @@
+:host {
+  --garaq-btn-bg: #2563eb;
+  --garaq-btn-text: #ffffff;
+  --garaq-btn-radius: 6px;
+}
+
+.garaq-button {
+  padding: 0.5rem 1rem;
+  border-radius: var(--garaq-btn-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* FILLED */
+.filled {
+  background: var(--garaq-btn-bg);
+  color: var(--garaq-btn-text);
+  border: none;
+}
+
+.filled:hover {
+  filter: brightness(0.9);
+}
+
+/* OUTLINED */
+.outlined {
+  background: transparent;
+  color: var(--garaq-btn-bg);
+  border: 1px solid var(--garaq-btn-bg);
+}
+
+.outlined:hover {
+  background: var(--garaq-btn-bg);
+  color: var(--garaq-btn-text);
+}
+
+/* TEXT */
+.text {
+  background: transparent;
+  color: var(--garaq-btn-bg);
+  border: none;
+}
+
+.text:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
