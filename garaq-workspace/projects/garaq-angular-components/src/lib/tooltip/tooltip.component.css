@@ -1,0 +1,160 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-tooltip-bg: #0f172a;
+  --gc-tooltip-color: #ffffff;
+  --gc-tooltip-radius: 0.375rem;
+  --gc-tooltip-max-width: 14rem;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* ─── Trigger wrapper ────────────────────────────────────────────────────── */
+/* display:contents makes the span layout-transparent:
+   the projected content behaves as a direct child of :host */
+
+.gc-trigger {
+  display: contents;
+}
+
+/* ─── Tooltip box ────────────────────────────────────────────────────────── */
+
+.gc-box {
+  position: absolute;
+  z-index: 50;
+  /* width:max-content prevents the box from collapsing to the host's narrow width */
+  width: max-content;
+  max-width: var(--gc-tooltip-max-width);
+  padding: 0.375rem 0.625rem;
+  border-radius: var(--gc-tooltip-radius);
+  background: var(--gc-tooltip-bg);
+  color: var(--gc-tooltip-color);
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  white-space: normal;
+  word-break: break-word;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  /* Delay visibility so the fade-out finishes before element disappears */
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0s 0.15s;
+  box-sizing: border-box;
+}
+
+/* ─── Placement: TOP (default) ───────────────────────────────────────────── */
+
+:host(.gc-placement-top) .gc-box {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+}
+
+:host(.gc-placement-top.gc-open) .gc-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0s 0s;
+}
+
+:host(.gc-placement-top) .gc-box::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--gc-tooltip-bg);
+}
+
+/* ─── Placement: BOTTOM ──────────────────────────────────────────────────── */
+
+:host(.gc-placement-bottom) .gc-box {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+:host(.gc-placement-bottom.gc-open) .gc-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0s 0s;
+}
+
+:host(.gc-placement-bottom) .gc-box::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: var(--gc-tooltip-bg);
+}
+
+/* ─── Placement: LEFT ────────────────────────────────────────────────────── */
+
+:host(.gc-placement-left) .gc-box {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+}
+
+:host(.gc-placement-left.gc-open) .gc-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0s 0s;
+}
+
+:host(.gc-placement-left) .gc-box::before {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: var(--gc-tooltip-bg);
+}
+
+/* ─── Placement: RIGHT ───────────────────────────────────────────────────── */
+
+:host(.gc-placement-right) .gc-box {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-6px);
+}
+
+:host(.gc-placement-right.gc-open) .gc-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0s 0s;
+}
+
+:host(.gc-placement-right) .gc-box::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: var(--gc-tooltip-bg);
+}

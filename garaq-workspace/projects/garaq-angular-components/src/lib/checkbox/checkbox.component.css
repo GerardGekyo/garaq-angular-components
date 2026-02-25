@@ -1,0 +1,142 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  /* Accent: checked border, checked background, focus ring */
+  --gc-checkbox-color: #2563eb;
+  /* Checkmark icon color */
+  --gc-checkbox-fg: #ffffff;
+  /* Border when unchecked */
+  --gc-checkbox-border: #d1d5db;
+  /* Background when unchecked */
+  --gc-checkbox-bg: #ffffff;
+  /* Box corner radius */
+  --gc-checkbox-radius: 0.25rem;
+
+  /* Internal size token — updated per size class */
+  --_box: 1rem;
+
+  display: inline-flex;
+  box-sizing: border-box;
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────────────── */
+
+:host(.gc-size-sm) {
+  --_box: 0.875rem;
+  font-size: 0.75rem;
+}
+
+:host(.gc-size-default) {
+  --_box: 1rem;
+  font-size: 0.875rem;
+}
+
+:host(.gc-size-lg) {
+  --_box: 1.25rem;
+  font-size: 1rem;
+}
+
+/* ─── Root label ─────────────────────────────────────────────────────────── */
+
+.gc-root {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ─── Visually hidden native input (still focusable via keyboard) ────────── */
+
+.gc-native {
+  position: absolute;
+  width: var(--_box);
+  height: var(--_box);
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* ─── Custom box ─────────────────────────────────────────────────────────── */
+
+.gc-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--_box);
+  height: var(--_box);
+  border-radius: var(--gc-checkbox-radius);
+  border: 1.5px solid var(--gc-checkbox-border);
+  background: var(--gc-checkbox-bg);
+  margin-top: 0.0625rem; /* optical alignment with text */
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Focus ring via keyboard — native input triggers sibling .gc-box */
+.gc-native:focus-visible ~ .gc-box {
+  border-color: var(--gc-checkbox-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gc-checkbox-color) 25%, transparent);
+}
+
+/* ─── Checkmark ──────────────────────────────────────────────────────────── */
+
+.gc-check {
+  width: 62%;
+  height: 62%;
+  color: var(--gc-checkbox-fg);
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity 0.12s ease,
+    transform 0.12s ease;
+}
+
+/* ─── Checked state ──────────────────────────────────────────────────────── */
+
+:host(.gc-checked) .gc-box {
+  background: var(--gc-checkbox-color);
+  border-color: var(--gc-checkbox-color);
+}
+
+:host(.gc-checked) .gc-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Text column ────────────────────────────────────────────────────────── */
+
+.gc-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  line-height: 1.25rem;
+}
+
+.gc-label {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.gc-description {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────── */
+
+:host(.gc-disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:host(.gc-disabled) .gc-root {
+  cursor: not-allowed;
+  pointer-events: none;
+}

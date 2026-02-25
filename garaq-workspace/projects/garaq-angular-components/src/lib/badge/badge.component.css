@@ -1,0 +1,83 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-badge-primary: #2563eb;
+  --gc-badge-primary-fg: #ffffff;
+  --gc-badge-secondary-bg: #f1f5f9;
+  --gc-badge-secondary-fg: #0f172a;
+  --gc-badge-radius: 9999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border-radius: var(--gc-badge-radius);
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────────────── */
+
+:host(.gc-size-sm) {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.6875rem;
+}
+
+:host(.gc-size-default) {
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+}
+
+:host(.gc-size-lg) {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* ─── Variants ───────────────────────────────────────────────────────────── */
+
+/* default — solid primary */
+:host(.gc-variant-default) {
+  background: var(--gc-badge-primary);
+  color: var(--gc-badge-primary-fg);
+  border-color: var(--gc-badge-primary);
+}
+
+/* outline — border only */
+:host(.gc-variant-outline) {
+  background: transparent;
+  color: var(--gc-badge-primary);
+  border-color: var(--gc-badge-primary);
+}
+
+/* secondary — muted */
+:host(.gc-variant-secondary) {
+  background: var(--gc-badge-secondary-bg);
+  color: var(--gc-badge-secondary-fg);
+  border-color: transparent;
+}
+
+/* ghost — no background, no border */
+:host(.gc-variant-ghost) {
+  background: color-mix(in srgb, var(--gc-badge-primary) 10%, transparent);
+  color: var(--gc-badge-primary);
+  border-color: transparent;
+}
+
+/* link — looks like inline text label */
+:host(.gc-variant-link) {
+  background: transparent;
+  color: var(--gc-badge-primary);
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* shadow — solid with colored drop shadow */
+:host(.gc-variant-shadow) {
+  background: var(--gc-badge-primary);
+  color: var(--gc-badge-primary-fg);
+  border-color: transparent;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--gc-badge-primary) 45%, transparent);
+}

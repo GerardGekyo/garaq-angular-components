@@ -1,0 +1,29 @@
+@if (inputLabel()) {
+  <label class="gc-label" [for]="_id">{{ inputLabel() }}</label>
+}
+
+<div class="gc-wrapper">
+  <textarea
+    class="gc-native"
+    [id]="_id"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [value]="value()"
+    [rows]="rows()"
+    [attr.maxlength]="maxLength()"
+    (input)="onInput($event)"
+  ></textarea>
+</div>
+
+@if (inputDescription() || maxLength()) {
+  <div class="gc-footer">
+    @if (inputDescription()) {
+      <p class="gc-description">{{ inputDescription() }}</p>
+    }
+    @if (maxLength()) {
+      <span class="gc-counter" [class.gc-at-limit]="isAtLimit()">
+        {{ charCount() }}&thinsp;/&thinsp;{{ maxLength() }}
+      </span>
+    }
+  </div>
+}

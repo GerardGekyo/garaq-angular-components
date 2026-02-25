@@ -1,0 +1,37 @@
+@if (inputLabel()) {
+  <label class="gc-label" [for]="_id">{{ inputLabel() }}</label>
+}
+
+<div class="gc-wrapper">
+  <span class="gc-prefix">
+    <ng-content select="[gcPrefix]" />
+  </span>
+
+  <input
+    class="gc-native"
+    [id]="_id"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [value]="value()"
+    [attr.maxlength]="maxLength()"
+    (input)="onInput($event)"
+  />
+
+  <span class="gc-suffix">
+    <ng-content select="[gcSuffix]" />
+  </span>
+</div>
+
+@if (inputDescription() || maxLength()) {
+  <div class="gc-footer">
+    @if (inputDescription()) {
+      <p class="gc-description">{{ inputDescription() }}</p>
+    }
+    @if (maxLength()) {
+      <span class="gc-counter" [class.gc-at-limit]="isAtLimit()">
+        {{ charCount() }}&thinsp;/&thinsp;{{ maxLength() }}
+      </span>
+    }
+  </div>
+}

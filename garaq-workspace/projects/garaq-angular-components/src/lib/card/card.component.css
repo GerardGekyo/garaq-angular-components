@@ -1,0 +1,120 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-card-bg: #ffffff;
+  --gc-card-border: #e2e8f0;
+  --gc-card-radius: 0.75rem;
+  --gc-card-color: #0f172a;
+  --gc-card-muted: #64748b;
+  --gc-card-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+
+  /* Internal padding token — overridden per size class */
+  --_padding: 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--gc-card-radius);
+  background: var(--gc-card-bg);
+  color: var(--gc-card-color);
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--_padding);
+  gap: calc(var(--_padding) * 0.75);
+}
+
+/* ─── Padding sizes ──────────────────────────────────────────────────────── */
+
+:host(.gc-padding-none)    { --_padding: 0rem; }
+:host(.gc-padding-sm)      { --_padding: 0.75rem; }
+:host(.gc-padding-default) { --_padding: 1.25rem; }
+:host(.gc-padding-lg)      { --_padding: 2rem; }
+
+/* ─── Variants ───────────────────────────────────────────────────────────── */
+
+/* default — white surface with a subtle border */
+:host(.gc-variant-default) {
+  border: 1px solid var(--gc-card-border);
+}
+
+/* elevated — floating look via shadow, no border */
+:host(.gc-variant-elevated) {
+  box-shadow: var(--gc-card-shadow);
+}
+
+/* ghost — transparent, no border, no shadow */
+:host(.gc-variant-ghost) {
+  background: transparent;
+}
+
+/* outline — transparent with explicit border */
+:host(.gc-variant-outline) {
+  background: transparent;
+  border: 1px solid var(--gc-card-border);
+}
+
+/* ─── Media slot (full-bleed image/video area) ───────────────────────────── */
+
+/* Negative margin escapes the host padding so media touches the card edges.
+   overflow:hidden on :host clips it to the border-radius automatically. */
+.gc-media {
+  margin: calc(-1 * var(--_padding)) calc(-1 * var(--_padding)) 0;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.gc-media:empty {
+  display: none;
+  /* Reset margin so it contributes no space when hidden */
+  margin: 0;
+}
+
+/* Images and videos inside media fill the width */
+.gc-media > * {
+  display: block;
+  width: 100%;
+}
+
+/* ─── Header slot ────────────────────────────────────────────────────────── */
+
+.gc-header {
+  flex-shrink: 0;
+}
+
+.gc-header:empty {
+  display: none;
+}
+
+/* ─── Body (default) slot ────────────────────────────────────────────────── */
+
+/* flex: 1 makes body grow to fill available height.
+   Useful when cards are in a flex/grid row and need equal heights. */
+.gc-body {
+  flex: 1;
+}
+
+.gc-body:empty {
+  display: none;
+}
+
+/* ─── Footer slot ────────────────────────────────────────────────────────── */
+
+/* border-top provides a visual separator from body content.
+   padding-top adds breathing room between the border and footer content.
+   margin-top: auto pushes footer to the bottom in fixed-height cards. */
+.gc-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: calc(var(--_padding) * 0.5);
+  border-top: 1px solid var(--gc-card-border);
+}
+
+.gc-footer:empty {
+  display: none;
+}
+
+/* Ghost variant: footer separator is barely visible (no opaque border) */
+:host(.gc-variant-ghost) .gc-footer {
+  border-top-color: color-mix(in srgb, var(--gc-card-border) 40%, transparent);
+}

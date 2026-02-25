@@ -1,0 +1,13 @@
+<!-- Trigger: display:contents makes this span invisible in layout -->
+<span class="gc-trigger">
+  <ng-content />
+</span>
+
+<!-- Tooltip box -->
+<span class="gc-box" [id]="_id" role="tooltip">
+  @if (content()) {
+    {{ content() }}
+  }
+  <!-- Rich content slot: <span gcTooltipContent>...</span> -->
+  <ng-content select="[gcTooltipContent]" />
+</span>

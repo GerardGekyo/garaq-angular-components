@@ -1,0 +1,95 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-spinner-color: #2563eb;
+
+  /* Internal size token — set per size class */
+  --_sz: 1.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--_sz);
+  height: var(--_sz);
+  /* currentColor propagates to SVG stroke */
+  color: var(--gc-spinner-color);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────────────── */
+
+:host(.gc-size-xs)      { --_sz: 1rem; }
+:host(.gc-size-sm)      { --_sz: 1.25rem; }
+:host(.gc-size-default) { --_sz: 1.5rem; }
+:host(.gc-size-lg)      { --_sz: 2.5rem; }
+
+/* ─── Inner wrapper — this is what gets animated ─────────────────────────── */
+
+.gc-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Default spinner ────────────────────────────────────────────────────── */
+
+.gc-default {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gc-default svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Custom content slot ────────────────────────────────────────────────── */
+
+.gc-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Hide custom wrapper when nothing is projected */
+.gc-custom:empty {
+  display: none;
+}
+
+/* Hide default spinner when custom content is projected */
+.gc-custom:not(:empty) ~ .gc-default {
+  display: none;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+
+@keyframes gc-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes gc-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+@keyframes gc-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-35%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+:host(.gc-anim-spin)   .gc-inner { animation: gc-spin   0.75s linear infinite; }
+:host(.gc-anim-pulse)  .gc-inner { animation: gc-pulse  1.5s  ease-in-out infinite; }
+:host(.gc-anim-bounce) .gc-inner { animation: gc-bounce 1s    infinite; }
