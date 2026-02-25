@@ -1,8 +1,21 @@
-<div class="p-10 gap-4 flex">
-  <garaq-button color="primary">Primary</garaq-button>
-  <garaq-button color="danger">Danger</garaq-button>
-  <garaq-button color="success">Success</garaq-button>
-  <garaq-button backgroundColor="#000" textColor="#fff" radius="12px"> Custom </garaq-button>
+<div class="p-10 flex flex-wrap gap-4">
+  <h2 class="w-full text-lg font-semibold">Filled</h2>
+  <gc-button color="primary">Primary</gc-button>
+  <gc-button color="danger">Danger</gc-button>
+  <gc-button color="success">Success</gc-button>
+  <gc-button color="warning">Warning</gc-button>
+
+  <h2 class="w-full text-lg font-semibold">Outlined</h2>
+  <gc-button variant="outlined" color="primary">Primary</gc-button>
+  <gc-button variant="outlined" color="danger">Danger</gc-button>
+
+  <h2 class="w-full text-lg font-semibold">Text</h2>
+  <gc-button variant="text" color="primary">Primary</gc-button>
+  <gc-button variant="text" color="danger">Danger</gc-button>
+
+  <h2 class="w-full text-lg font-semibold">Custom & States</h2>
+  <gc-button backgroundColor="#7c3aed" textColor="#fff" radius="20px">Custom</gc-button>
+  <gc-button [disabled]="true">Disabled</gc-button>
 </div>
 
 <router-outlet />
