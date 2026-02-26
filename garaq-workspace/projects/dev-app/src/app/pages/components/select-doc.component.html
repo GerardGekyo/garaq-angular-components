@@ -1,0 +1,81 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Select</h1>
+      <gc-badge size="sm" variant="secondary">gc-select</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Selector desplegable con opciones simples o con descripción.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">options</td><td class="p-2 font-mono text-xs">(string | GcSelectOption)[]</td><td class="p-2 font-mono text-xs">[]</td><td class="p-2 text-gray-600">Lista de opciones</td></tr>
+          <tr><td class="p-2 font-mono text-xs">value</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Valor seleccionado</td></tr>
+          <tr><td class="p-2 font-mono text-xs">placeholder</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Placeholder</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el select</td></tr>
+          <tr><td class="p-2 font-mono text-xs">invalid</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Marca como inválido</td></tr>
+          <tr><td class="p-2 font-mono text-xs">emptyText</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">—</td><td class="p-2 text-gray-600">Texto cuando no hay opciones</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de focus</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Básico (strings)" [code]="basicCode">
+      <div class="max-w-sm">
+        <gc-select inputLabel="Talla" inputDescription="Selecciona tu talla." placeholder="Elige una talla..." [options]="sizes" [value]="selectedSize()" (valueChange)="selectedSize.set($event)" />
+        <p class="mt-2 text-xs text-gray-500">Seleccionado: <strong>{{ selectedSize() ?? '—' }}</strong></p>
+      </div>
+    </doc-example>
+
+    <doc-example title="Rich options (descripción + disabled)" [code]="richCode">
+      <div class="max-w-sm">
+        <gc-select inputLabel="Rol" placeholder="Asignar rol..." [options]="roles" [value]="selectedRole()" (valueChange)="selectedRole.set($event)" />
+        <p class="mt-2 text-xs text-gray-500">Seleccionado: <strong>{{ selectedRole() ?? '—' }}</strong></p>
+      </div>
+    </doc-example>
+
+    <doc-example title="Valor inicial" [code]="initialCode">
+      <div class="max-w-sm">
+        <gc-select inputLabel="Prioridad" [options]="priorities" [value]="selectedPriority()" (valueChange)="selectedPriority.set($event)" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Con prefix icon" [code]="prefixCode">
+      <div class="max-w-sm">
+        <gc-select inputLabel="País" placeholder="Selecciona un país..." [options]="countries">
+          <svg gcPrefix xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </gc-select>
+      </div>
+    </doc-example>
+
+    <doc-example title="Estados" [code]="statesCode">
+      <div class="flex flex-col gap-6 max-w-sm">
+        <gc-select inputLabel="Inválido" inputDescription="Este campo es requerido." placeholder="Selecciona..." [options]="sizes" invalid />
+        <gc-select inputLabel="Deshabilitado" placeholder="No disponible" [options]="sizes" disabled />
+        <gc-select inputLabel="Deshabilitado con valor" [options]="priorities" value="high" disabled />
+      </div>
+    </doc-example>
+
+    <doc-example title="Empty state" [code]="emptyCode">
+      <div class="max-w-sm">
+        <gc-select inputLabel="Sin opciones" placeholder="Selecciona..." [options]="[]" emptyText="No hay opciones disponibles" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Color personalizado" [code]="colorCode">
+      <div class="max-w-sm">
+        <gc-select inputLabel="Tema verde" placeholder="Elige..." [options]="priorities" color="#16a34a" />
+      </div>
+    </doc-example>
+  </section>
+</div>

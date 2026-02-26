@@ -19,6 +19,8 @@ export type CardPadding = 'none' | 'sm' | 'default' | 'lg';
     '[class.gc-padding-lg]': 'padding() === "lg"',
     '[style.--gc-card-bg]': 'background()',
     '[style.--gc-card-color]': 'color()',
+    '[style.--gc-card-border]': 'borderColor()',
+    '[style.--gc-card-radius]': 'radius()',
   },
 })
 export class CardComponent {
@@ -26,4 +28,8 @@ export class CardComponent {
   padding = input<CardPadding>('default');
   background = input<string | null>(null);
   color = input<string | null>(null);
+  /** Sets the card border color */
+  borderColor = input<string | null>(null);
+  /** Sets the card border radius (e.g. '1rem', '12px') */
+  radius = input<string | null>(null);
 }

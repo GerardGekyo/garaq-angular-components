@@ -1,0 +1,63 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 2rem);
+  padding: 1rem;
+}
+
+.gc-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gc-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.gc-step-circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 2px solid #d1d5db;
+  color: #9ca3af;
+  transition: all 200ms;
+}
+
+.gc-step-active .gc-step-circle {
+  background: #18181b;
+  border-color: #18181b;
+  color: #fff;
+}
+
+.gc-step-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.gc-step-active .gc-step-label {
+  color: #18181b;
+}
+
+.gc-step-line {
+  width: 3rem;
+  height: 2px;
+  background: #d1d5db;
+  margin: 0 0.5rem;
+  margin-bottom: 1.25rem;
+  transition: background 200ms;
+}
+
+.gc-step-line-active {
+  background: #18181b;
+}

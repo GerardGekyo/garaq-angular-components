@@ -1,9 +1,32 @@
 {
   "name": "garaq-angular-components",
   "version": "0.0.1",
+  "description": "Angular 21+ UI component library with signal-based inputs, CSS custom properties, and Tailwind CSS compatibility.",
+  "author": "GerardGekyo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GerardGekyo/garaq-angular-components.git"
+  },
+  "homepage": "https://github.com/GerardGekyo/garaq-angular-components",
+  "bugs": {
+    "url": "https://github.com/GerardGekyo/garaq-angular-components/issues"
+  },
+  "keywords": [
+    "angular",
+    "angular-components",
+    "ui-library",
+    "component-library",
+    "signal-inputs",
+    "tailwind",
+    "angular-21",
+    "css-custom-properties",
+    "accessible",
+    "standalone-components"
+  ],
   "peerDependencies": {
-    "@angular/common": "^21.1.0",
-    "@angular/core": "^21.1.0"
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

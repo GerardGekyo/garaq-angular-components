@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+.gc-example {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.gc-example-title {
+  padding: 0.75rem 1rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #374151;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+.gc-example-desc {
+  padding: 0.5rem 1rem 0;
+  margin: 0;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+.gc-example-preview {
+  padding: 1.5rem;
+}
+doc-code-block {
+  display: block;
+}
+:host ::ng-deep doc-code-block .gc-code-block {
+  border-radius: 0;
+}

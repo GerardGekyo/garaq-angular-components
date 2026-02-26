@@ -17,6 +17,7 @@ import {
   host: {
     '[class.gc-disabled]': 'disabled()',
     '[class.gc-invalid]': 'invalid()',
+    '[style.--gc-textarea-focus]': 'color()',
   },
 })
 export class TextareaComponent {
@@ -30,6 +31,8 @@ export class TextareaComponent {
   maxLength = input<number | null>(null);
   disabled = input(false, { transform: booleanAttribute });
   invalid = input(false, { transform: booleanAttribute });
+  /** Sets the accent/focus color */
+  color = input<string | null>(null);
 
   valueChange = output<string>();
 

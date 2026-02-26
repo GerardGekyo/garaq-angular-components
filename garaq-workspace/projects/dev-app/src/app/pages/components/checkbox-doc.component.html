@@ -1,0 +1,75 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Checkbox</h1>
+      <gc-badge size="sm" variant="secondary">gc-checkbox</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Casilla de verificación con label, descripción y contenido rico.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">label</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto del label</td></tr>
+          <tr><td class="p-2 font-mono text-xs">description</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto de ayuda</td></tr>
+          <tr><td class="p-2 font-mono text-xs">checked</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Estado checked</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el checkbox</td></tr>
+          <tr><td class="p-2 font-mono text-xs">size</td><td class="p-2 font-mono text-xs">CheckboxSize</td><td class="p-2 font-mono text-xs">'default'</td><td class="p-2 text-gray-600">sm | default | lg</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color personalizado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Estados" [code]="statesCode">
+      <div class="flex flex-col gap-4">
+        <gc-checkbox label="Sin marcar" />
+        <gc-checkbox label="Marcado por defecto" checked />
+        <gc-checkbox label="Con descripción" description="Texto de ayuda debajo del label." />
+        <gc-checkbox label="Deshabilitado" disabled />
+        <gc-checkbox label="Deshabilitado y marcado" checked disabled />
+      </div>
+    </doc-example>
+
+    <doc-example title="Tamaños" [code]="sizesCode">
+      <div class="flex flex-col gap-4">
+        <gc-checkbox size="sm" label="Small" description="Tamaño pequeño." />
+        <gc-checkbox label="Default" description="Tamaño por defecto." />
+        <gc-checkbox size="lg" label="Large" description="Tamaño grande." />
+      </div>
+    </doc-example>
+
+    <doc-example title="Colores personalizados" [code]="colorsCode">
+      <div class="flex flex-col gap-4">
+        <gc-checkbox label="Violeta" description="color='#7c3aed'" color="#7c3aed" checked />
+        <gc-checkbox label="Verde" description="color='#16a34a'" color="#16a34a" checked />
+        <gc-checkbox label="Rojo" description="color='#dc2626'" color="#dc2626" checked />
+        <gc-checkbox label="Amarillo" description="color='#f59e0b'" checked color="#f59e0b" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Contenido rico" [code]="richCode">
+      <div class="flex flex-col gap-4">
+        <gc-checkbox checked>
+          <span class="font-medium text-gray-900">Acepto los <a href="#" class="text-blue-600 underline">términos y condiciones</a></span>
+          <p class="text-xs text-gray-500">Al marcar esta casilla aceptas nuestra política de privacidad.</p>
+        </gc-checkbox>
+        <gc-checkbox>
+          <span class="inline-flex items-center gap-2 font-medium text-gray-900">
+            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-100 text-blue-600 text-xs">&#10003;</span>
+            Notificaciones por email
+          </span>
+          <p class="text-xs text-gray-500">Recibirás resúmenes semanales de actividad.</p>
+        </gc-checkbox>
+      </div>
+    </doc-example>
+  </section>
+</div>

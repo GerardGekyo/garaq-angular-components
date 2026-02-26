@@ -1,0 +1,53 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-separator-color: #e2e8f0;
+  --gc-separator-text: #94a3b8;
+  --gc-separator-thickness: 1px;
+
+  display: block;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* ─── Horizontal ─────────────────────────────────────────────────────────── */
+
+:host(.gc-horizontal) {
+  width: 100%;
+  border-top: var(--gc-separator-thickness) solid var(--gc-separator-color);
+}
+
+:host(.gc-horizontal.gc-has-label) {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-top: none;
+}
+
+:host(.gc-horizontal.gc-has-label)::before,
+:host(.gc-horizontal.gc-has-label)::after {
+  content: '';
+  flex: 1;
+  height: var(--gc-separator-thickness);
+  background: var(--gc-separator-color);
+}
+
+/* ─── Vertical ───────────────────────────────────────────────────────────── */
+
+:host(.gc-vertical) {
+  display: inline-block;
+  width: auto;
+  align-self: stretch;
+  min-height: 1rem;
+  border-top: none;
+  border-left: var(--gc-separator-thickness) solid var(--gc-separator-color);
+}
+
+/* ─── Label ──────────────────────────────────────────────────────────────── */
+
+.gc-label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: var(--gc-separator-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}

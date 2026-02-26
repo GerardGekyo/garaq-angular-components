@@ -1,0 +1,215 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Card</h1>
+      <gc-badge size="sm" variant="secondary">gc-card</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Contenedor con variantes, media full-bleed, header y footer.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">variant</td><td class="p-2 font-mono text-xs">CardVariant</td><td class="p-2 font-mono text-xs">'default'</td><td class="p-2 text-gray-600">default | elevated | ghost | outline</td></tr>
+          <tr><td class="p-2 font-mono text-xs">padding</td><td class="p-2 font-mono text-xs">CardPadding</td><td class="p-2 font-mono text-xs">'default'</td><td class="p-2 text-gray-600">none | sm | default | lg</td></tr>
+          <tr><td class="p-2 font-mono text-xs">background</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de fondo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de texto</td></tr>
+          <tr><td class="p-2 font-mono text-xs">borderColor</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de borde</td></tr>
+          <tr><td class="p-2 font-mono text-xs">radius</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Border radius</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="text-xs font-semibold text-gray-500 mt-4 mb-2">Slots</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Selector</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">[gcCardMedia]</td><td class="p-2 text-gray-600">Imagen/media full-bleed</td></tr>
+          <tr><td class="p-2 font-mono text-xs">[gcCardHeader]</td><td class="p-2 text-gray-600">Sección de encabezado</td></tr>
+          <tr><td class="p-2 font-mono text-xs">(default)</td><td class="p-2 text-gray-600">Cuerpo de la tarjeta</td></tr>
+          <tr><td class="p-2 font-mono text-xs">[gcCardFooter]</td><td class="p-2 text-gray-600">Sección de pie con separador</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Variantes" [code]="variantsCode">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <gc-card>
+          <div gcCardHeader>
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">default</p>
+            <h3 class="text-base font-semibold text-gray-900">Tarjeta Default</h3>
+          </div>
+          <p class="text-sm text-gray-500">Fondo blanco con borde sutil.</p>
+          <div gcCardFooter class="flex gap-2">
+            <gc-button size="sm">Acción</gc-button>
+            <gc-button size="sm" variant="ghost">Cancelar</gc-button>
+          </div>
+        </gc-card>
+        <gc-card variant="elevated">
+          <div gcCardHeader>
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">elevated</p>
+            <h3 class="text-base font-semibold text-gray-900">Tarjeta Elevada</h3>
+          </div>
+          <p class="text-sm text-gray-500">Sombra sin borde.</p>
+          <div gcCardFooter class="flex gap-2">
+            <gc-button size="sm">Acción</gc-button>
+            <gc-button size="sm" variant="ghost">Cancelar</gc-button>
+          </div>
+        </gc-card>
+        <gc-card variant="ghost">
+          <div gcCardHeader>
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">ghost</p>
+            <h3 class="text-base font-semibold text-gray-900">Tarjeta Ghost</h3>
+          </div>
+          <p class="text-sm text-gray-500">Sin fondo ni borde.</p>
+          <div gcCardFooter class="flex gap-2">
+            <gc-button size="sm" variant="outline">Acción</gc-button>
+          </div>
+        </gc-card>
+        <gc-card variant="outline">
+          <div gcCardHeader>
+            <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">outline</p>
+            <h3 class="text-base font-semibold text-gray-900">Tarjeta Outline</h3>
+          </div>
+          <p class="text-sm text-gray-500">Borde visible sin fondo.</p>
+          <div gcCardFooter class="flex gap-2">
+            <gc-button size="sm" variant="outline">Acción</gc-button>
+          </div>
+        </gc-card>
+      </div>
+    </doc-example>
+
+    <doc-example title="Padding sizes" [code]="paddingCode">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <gc-card padding="none">
+          <div gcCardHeader class="p-3 bg-gray-50 border-b border-gray-200"><p class="text-xs font-medium text-gray-600">padding="none"</p></div>
+          <p class="text-sm text-gray-500 p-3">Control total del espaciado.</p>
+        </gc-card>
+        <gc-card padding="sm">
+          <div gcCardHeader><p class="text-xs font-medium text-gray-600">padding="sm"</p></div>
+          <p class="text-sm text-gray-500">Compacto.</p>
+        </gc-card>
+        <gc-card>
+          <div gcCardHeader><p class="text-xs font-medium text-gray-600">padding="default"</p></div>
+          <p class="text-sm text-gray-500">Estándar.</p>
+        </gc-card>
+        <gc-card padding="lg">
+          <div gcCardHeader><p class="text-xs font-medium text-gray-600">padding="lg"</p></div>
+          <p class="text-sm text-gray-500">Generoso.</p>
+        </gc-card>
+      </div>
+    </doc-example>
+
+    <doc-example title="Media (full-bleed)" [code]="mediaCode">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
+        <gc-card variant="elevated">
+          <img gcCardMedia src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Montaña" style="height: 160px; object-fit: cover" />
+          <div gcCardHeader>
+            <h3 class="text-sm font-semibold text-gray-900">Paisaje de montaña</h3>
+            <p class="text-xs text-gray-400 mt-0.5">Fotografía</p>
+          </div>
+          <p class="text-xs text-gray-500">Imagen full-bleed sin padding.</p>
+        </gc-card>
+        <gc-card variant="elevated">
+          <img gcCardMedia src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80" alt="Ciudad" style="height: 160px; object-fit: cover" />
+          <div gcCardHeader>
+            <h3 class="text-sm font-semibold text-gray-900">Ciudad nocturna</h3>
+            <p class="text-xs text-gray-400 mt-0.5">Urbano</p>
+          </div>
+          <p class="text-xs text-gray-500">Respeta el border-radius.</p>
+        </gc-card>
+        <gc-card variant="elevated">
+          <img gcCardMedia src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Bosque" style="height: 160px; object-fit: cover" />
+          <div gcCardHeader>
+            <h3 class="text-sm font-semibold text-gray-900">Bosque tropical</h3>
+          </div>
+          <div gcCardFooter class="flex justify-between items-center">
+            <gc-badge size="sm" background="#16a34a">Nuevo</gc-badge>
+            <gc-button size="sm" variant="ghost">Ver más</gc-button>
+          </div>
+        </gc-card>
+      </div>
+    </doc-example>
+
+    <doc-example title="Colores personalizados" [code]="colorsCode">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
+        <gc-card background="#1e293b" color="#f8fafc">
+          <div gcCardHeader>
+            <h3 class="text-sm font-semibold">Tema oscuro</h3>
+            <p class="text-xs mt-0.5" style="color: #94a3b8">background + color</p>
+          </div>
+          <p class="text-xs" style="color: #94a3b8">Usa inputs simples para personalizar.</p>
+          <div gcCardFooter class="flex gap-2">
+            <gc-button size="sm" background="#3b82f6">Acción</gc-button>
+          </div>
+        </gc-card>
+        <gc-card background="#fdf4ff" borderColor="#d8b4fe" radius="1.25rem">
+          <div gcCardHeader>
+            <h3 class="text-sm font-semibold text-purple-900">Tema violeta</h3>
+            <p class="text-xs text-purple-400 mt-0.5">borderColor + radius</p>
+          </div>
+          <p class="text-xs text-purple-700">Con borderColor y radius.</p>
+          <div gcCardFooter class="flex gap-2">
+            <gc-button size="sm" background="#7c3aed">Acción</gc-button>
+          </div>
+        </gc-card>
+        <gc-card background="#f0fdf4" borderColor="#86efac" radius="0.25rem">
+          <div gcCardHeader>
+            <h3 class="text-sm font-semibold text-green-900">Tema verde</h3>
+            <p class="text-xs text-green-400 mt-0.5">radius cuadrado</p>
+          </div>
+          <p class="text-xs text-green-700">radius="0.25rem" controla el redondeo.</p>
+          <div gcCardFooter class="flex gap-2">
+            <gc-button size="sm" background="#16a34a">Acción</gc-button>
+          </div>
+        </gc-card>
+      </div>
+    </doc-example>
+
+    <doc-example title="En contexto" [code]="contextCode">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
+        <gc-card variant="elevated">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs text-gray-400 uppercase tracking-wide">Usuarios activos</p>
+              <p class="text-3xl font-bold text-gray-900 mt-1">12,480</p>
+              <p class="text-xs text-green-600 mt-1">&#8593; 8.2% vs. mes anterior</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+        </gc-card>
+        <gc-card>
+          <div gcCardHeader class="flex items-center justify-between">
+            <div>
+              <h3 class="text-sm font-semibold text-gray-900">Plan Pro</h3>
+              <p class="text-xs text-gray-400">Facturación mensual</p>
+            </div>
+            <gc-badge background="#7c3aed">Activo</gc-badge>
+          </div>
+          <ul class="text-sm text-gray-600 space-y-1.5">
+            <li class="flex items-center gap-2"><span class="text-green-500">&#10003;</span> Proyectos ilimitados</li>
+            <li class="flex items-center gap-2"><span class="text-green-500">&#10003;</span> 50 GB de almacenamiento</li>
+            <li class="flex items-center gap-2"><span class="text-green-500">&#10003;</span> Soporte prioritario</li>
+          </ul>
+          <div gcCardFooter class="flex items-center justify-between">
+            <span class="text-lg font-bold text-gray-900">$12 <span class="text-xs font-normal text-gray-400">/ mes</span></span>
+            <gc-button size="sm" background="#7c3aed">Administrar</gc-button>
+          </div>
+        </gc-card>
+      </div>
+    </doc-example>
+  </section>
+</div>

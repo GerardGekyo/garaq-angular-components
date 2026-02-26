@@ -1,0 +1,113 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+
+/* ─── Container (gc-toast-container) ─────────────────────────────────────── */
+
+:host {
+  --gc-toast-radius: 0.5rem;
+  --gc-toast-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  max-width: 22rem;
+  pointer-events: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* ─── Toast item ─────────────────────────────────────────────────────────── */
+
+.gc-toast-item,
+.gc-toast-body {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--gc-toast-radius);
+  box-shadow: var(--gc-toast-shadow);
+  pointer-events: auto;
+  animation: gc-toast-in 0.25s ease;
+}
+
+/* ─── Variants ───────────────────────────────────────────────────────────── */
+
+.gc-variant-info {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.gc-variant-success {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.gc-variant-warning {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.gc-variant-error {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* ─── Message ────────────────────────────────────────────────────────────── */
+
+.gc-toast-message {
+  flex: 1;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+/* ─── Close button ───────────────────────────────────────────────────────── */
+
+.gc-toast-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: currentColor;
+  opacity: 0.6;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: opacity 0.15s ease;
+}
+
+.gc-toast-close:hover {
+  opacity: 1;
+}
+
+.gc-toast-close svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ─── Animation ──────────────────────────────────────────────────────────── */
+
+@keyframes gc-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gc-toast-item,
+  .gc-toast-body {
+    animation: none;
+  }
+}

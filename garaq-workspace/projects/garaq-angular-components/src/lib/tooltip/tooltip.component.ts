@@ -23,6 +23,8 @@ export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
     '[class.gc-placement-right]': 'placement() === "right"',
     '(mouseenter)': '_show()',
     '(mouseleave)': '_hide()',
+    '[style.--gc-tooltip-bg]': 'background()',
+    '[style.--gc-tooltip-color]': 'color()',
     '(focusin)': '_show()',
     '(focusout)': '_hide()',
   },
@@ -35,6 +37,10 @@ export class TooltipComponent implements OnDestroy {
   /** Delay in ms before the tooltip appears */
   delay = input(0, { transform: numberAttribute });
   disabled = input(false, { transform: booleanAttribute });
+  /** Sets the tooltip background color */
+  background = input<string | null>(null);
+  /** Sets the tooltip text color */
+  color = input<string | null>(null);
 
   protected readonly _id = `gc-tooltip-${++TooltipComponent._count}`;
   protected readonly _isOpen = signal(false);

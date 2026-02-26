@@ -1,0 +1,35 @@
+<dialog
+  #dialogEl
+  class="gc-dialog"
+  [style.max-width]="maxWidth()"
+  (close)="_onClose()"
+  (click)="_onBackdropClick($event)"
+  (keydown)="_onKeydown($event)"
+>
+  <div class="gc-panel">
+    @if (title()) {
+      <div class="gc-header">
+        <h2 class="gc-title">{{ title() }}</h2>
+        <button
+          type="button"
+          class="gc-close"
+          aria-label="Close dialog"
+          (click)="_onClose()"
+        >
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="4" x2="12" y2="12" />
+            <line x1="12" y1="4" x2="4" y2="12" />
+          </svg>
+        </button>
+      </div>
+    }
+
+    <div class="gc-body">
+      <ng-content />
+    </div>
+
+    <div class="gc-footer">
+      <ng-content select="[gcDialogFooter]" />
+    </div>
+  </div>
+</dialog>

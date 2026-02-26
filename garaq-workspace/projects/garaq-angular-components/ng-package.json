@@ -3,5 +3,9 @@
   "dest": "../../dist/garaq-angular-components",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
 }

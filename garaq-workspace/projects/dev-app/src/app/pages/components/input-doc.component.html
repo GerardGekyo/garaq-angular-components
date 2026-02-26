@@ -1,0 +1,95 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Input</h1>
+      <gc-badge size="sm" variant="secondary">gc-input</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Campo de texto con label, descripción, prefijo/sufijo y validación.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">inputLabel</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Etiqueta del campo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">inputDescription</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto de ayuda debajo del campo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">placeholder</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Placeholder del input</td></tr>
+          <tr><td class="p-2 font-mono text-xs">type</td><td class="p-2 font-mono text-xs">InputType</td><td class="p-2 font-mono text-xs">'text'</td><td class="p-2 text-gray-600">Tipo de input HTML</td></tr>
+          <tr><td class="p-2 font-mono text-xs">value</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Valor del campo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">maxLength</td><td class="p-2 font-mono text-xs">number | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Límite de caracteres</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el campo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">invalid</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Marca el campo como inválido</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de focus personalizado</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="text-xs font-semibold text-gray-500 mt-4 mb-2">Slots</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Selector</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">[gcPrefix]</td><td class="p-2 text-gray-600">Contenido antes del input (texto, SVG, componente)</td></tr>
+          <tr><td class="p-2 font-mono text-xs">[gcSuffix]</td><td class="p-2 text-gray-600">Contenido después del input (texto, SVG, botón)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Límite de caracteres" [code]="charLimitCode">
+      <div class="flex flex-col gap-4 max-w-sm">
+        <gc-input inputLabel="Username" placeholder="Tu nombre de usuario" [maxLength]="20" />
+        <gc-input inputLabel="Bio" placeholder="Cuéntanos sobre ti..." inputDescription="Aparece en tu perfil público." [maxLength]="120" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Estados" [code]="statesCode">
+      <div class="flex flex-col gap-4 max-w-sm">
+        <gc-input inputLabel="Default" placeholder="Escribe algo..." />
+        <gc-input inputLabel="Con descripción" placeholder="usuario&#64;ejemplo.com" inputDescription="Te enviaremos un correo de confirmación." />
+        <gc-input inputLabel="Inválido" placeholder="nombre de usuario" inputDescription="Este nombre de usuario ya está en uso." invalid />
+        <gc-input inputLabel="Deshabilitado" placeholder="No editable" inputDescription="Este campo está deshabilitado." disabled />
+      </div>
+    </doc-example>
+
+    <doc-example title="Prefix y Suffix" [code]="prefixSuffixCode">
+      <div class="flex flex-col gap-4 max-w-sm">
+        <gc-input inputLabel="URL" placeholder="mi-sitio">
+          <span gcPrefix class="text-sm text-gray-400">https://</span>
+        </gc-input>
+        <gc-input inputLabel="Precio" placeholder="0.00">
+          <span gcPrefix class="text-sm text-gray-400">$</span>
+          <span gcSuffix class="text-sm text-gray-400">USD</span>
+        </gc-input>
+        <gc-input inputLabel="Búsqueda" placeholder="Buscar..." type="search">
+          <svg gcPrefix xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+          </svg>
+        </gc-input>
+        <gc-input inputLabel="Contraseña" placeholder="••••••••" [type]="showPassword() ? 'text' : 'password'">
+          <button gcSuffix type="button" (click)="showPassword.set(!showPassword())" class="flex items-center border-none bg-transparent cursor-pointer p-0 text-gray-400 hover:text-gray-600 transition-colors">
+            @if (showPassword()) {
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+            } @else {
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+            }
+          </button>
+        </gc-input>
+      </div>
+    </doc-example>
+
+    <doc-example title="Color personalizado" [code]="colorCode">
+      <div class="flex flex-col gap-4 max-w-sm">
+        <gc-input inputLabel="Tema violeta" placeholder="Focus me..." color="#7c3aed" />
+      </div>
+    </doc-example>
+  </section>
+</div>

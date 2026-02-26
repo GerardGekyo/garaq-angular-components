@@ -1,0 +1,163 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  /* Accent: checked track background, focus ring */
+  --gc-switch-color: #2563eb;
+  /* Thumb color */
+  --gc-switch-thumb: #ffffff;
+  /* Track border & background when unchecked */
+  --gc-switch-border: #d1d5db;
+  --gc-switch-bg: #e5e7eb;
+
+  /* Internal size tokens — updated per size class */
+  --_track-w: 2.25rem;
+  --_track-h: 1.25rem;
+  --_thumb: 1rem;
+  --_offset: 0.125rem;
+
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────────────── */
+
+:host(.gc-size-sm) {
+  --_track-w: 1.75rem;
+  --_track-h: 1rem;
+  --_thumb: 0.75rem;
+  --_offset: 0.125rem;
+  font-size: 0.75rem;
+}
+
+:host(.gc-size-default) {
+  --_track-w: 2.25rem;
+  --_track-h: 1.25rem;
+  --_thumb: 1rem;
+  --_offset: 0.125rem;
+  font-size: 0.875rem;
+}
+
+:host(.gc-size-lg) {
+  --_track-w: 2.75rem;
+  --_track-h: 1.5rem;
+  --_thumb: 1.25rem;
+  --_offset: 0.125rem;
+  font-size: 1rem;
+}
+
+/* ─── Root label ─────────────────────────────────────────────────────────── */
+
+.gc-root {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ─── Visually hidden native input (still focusable via keyboard) ────────── */
+
+.gc-native {
+  position: absolute;
+  width: var(--_track-w);
+  height: var(--_track-h);
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* ─── Track ──────────────────────────────────────────────────────────────── */
+
+.gc-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--_track-w);
+  height: var(--_track-h);
+  border-radius: calc(var(--_track-h) / 2);
+  background: var(--gc-switch-bg);
+  border: 1.5px solid var(--gc-switch-border);
+  margin-top: 0.0625rem; /* optical alignment with text */
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.15s ease;
+  box-sizing: border-box;
+}
+
+/* Focus ring via keyboard */
+.gc-native:focus-visible ~ .gc-track {
+  border-color: var(--gc-switch-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gc-switch-color) 25%, transparent);
+}
+
+/* ─── Thumb ──────────────────────────────────────────────────────────────── */
+
+.gc-thumb {
+  position: absolute;
+  left: var(--_offset);
+  width: var(--_thumb);
+  height: var(--_thumb);
+  border-radius: 50%;
+  background: var(--gc-switch-thumb);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* ─── Checked state ──────────────────────────────────────────────────────── */
+
+:host(.gc-checked) .gc-track {
+  background: var(--gc-switch-color);
+  border-color: var(--gc-switch-color);
+}
+
+:host(.gc-checked) .gc-thumb {
+  transform: translateX(calc(var(--_track-w) - var(--_thumb) - var(--_offset) * 2 - 3px));
+}
+
+/* ─── Text column ────────────────────────────────────────────────────────── */
+
+.gc-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+  line-height: 1.25rem;
+}
+
+.gc-text:empty {
+  display: none;
+}
+
+.gc-content:empty {
+  display: none;
+}
+
+.gc-label {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.gc-description {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────── */
+
+:host(.gc-disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:host(.gc-disabled) .gc-root {
+  cursor: not-allowed;
+  pointer-events: none;
+}

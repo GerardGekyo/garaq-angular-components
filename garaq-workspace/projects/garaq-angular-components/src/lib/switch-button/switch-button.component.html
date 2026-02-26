@@ -1,0 +1,26 @@
+<label class="gc-root">
+  <input
+    class="gc-native"
+    type="checkbox"
+    role="switch"
+    [id]="_id"
+    [checked]="_currentChecked()"
+    [disabled]="disabled()"
+    [attr.aria-checked]="_currentChecked()"
+    (change)="onChange($event)"
+  />
+
+  <span class="gc-track" aria-hidden="true">
+    <span class="gc-thumb"></span>
+  </span>
+
+  <span class="gc-text">
+    @if (label()) {
+      <span class="gc-label">{{ label() }}</span>
+    }
+    <span class="gc-content"><ng-content /></span>
+    @if (description()) {
+      <p class="gc-description">{{ description() }}</p>
+    }
+  </span>
+</label>

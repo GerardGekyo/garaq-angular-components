@@ -1,0 +1,117 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Tooltip</h1>
+      <gc-badge size="sm" variant="secondary">gc-tooltip</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Información contextual que aparece al pasar el cursor.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">content</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto del tooltip</td></tr>
+          <tr><td class="p-2 font-mono text-xs">placement</td><td class="p-2 font-mono text-xs">TooltipPlacement</td><td class="p-2 font-mono text-xs">'top'</td><td class="p-2 text-gray-600">top | bottom | left | right</td></tr>
+          <tr><td class="p-2 font-mono text-xs">delay</td><td class="p-2 font-mono text-xs">number</td><td class="p-2 font-mono text-xs">0</td><td class="p-2 text-gray-600">Retraso en ms antes de mostrar</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el tooltip</td></tr>
+          <tr><td class="p-2 font-mono text-xs">background</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de fondo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de texto</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="text-xs font-semibold text-gray-500 mt-4 mb-2">Slots</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Selector</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">[gcTooltipContent]</td><td class="p-2 text-gray-600">Contenido rico para el tooltip (reemplaza content)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Posiciones" [code]="placementsCode">
+      <div class="flex flex-wrap items-center justify-center gap-8 py-10">
+        <gc-tooltip content="Tooltip arriba" placement="top">
+          <gc-button variant="outline">Top</gc-button>
+        </gc-tooltip>
+        <gc-tooltip content="Tooltip abajo" placement="bottom">
+          <gc-button variant="outline">Bottom</gc-button>
+        </gc-tooltip>
+        <gc-tooltip content="Tooltip izquierda" placement="left">
+          <gc-button variant="outline">Left</gc-button>
+        </gc-tooltip>
+        <gc-tooltip content="Tooltip derecha" placement="right">
+          <gc-button variant="outline">Right</gc-button>
+        </gc-tooltip>
+      </div>
+    </doc-example>
+
+    <doc-example title="Delay y Disabled" [code]="delayCode">
+      <div class="flex flex-wrap items-center gap-6 py-4">
+        <gc-tooltip content="Aparece de inmediato">
+          <gc-button size="sm">Sin delay</gc-button>
+        </gc-tooltip>
+        <gc-tooltip content="Aparece después de 500ms" [delay]="500">
+          <gc-button size="sm" variant="secondary">Delay 500ms</gc-button>
+        </gc-tooltip>
+        <gc-tooltip content="Nunca verás esto" disabled>
+          <gc-button size="sm" variant="ghost">Disabled</gc-button>
+        </gc-tooltip>
+      </div>
+    </doc-example>
+
+    <doc-example title="Colores personalizados" [code]="colorsCode">
+      <div class="flex flex-wrap items-center gap-6 py-4">
+        <gc-tooltip content="Tooltip violeta" background="#7c3aed">
+          <gc-button background="#7c3aed">Violeta</gc-button>
+        </gc-tooltip>
+        <gc-tooltip content="Tooltip verde" background="#16a34a">
+          <gc-button background="#16a34a">Verde</gc-button>
+        </gc-tooltip>
+        <gc-tooltip content="Tooltip rojo" background="#dc2626">
+          <gc-button background="#dc2626">Rojo</gc-button>
+        </gc-tooltip>
+      </div>
+    </doc-example>
+
+    <doc-example title="Contenido rico" [code]="richCode">
+      <div class="flex flex-wrap items-center gap-6 py-4">
+        <gc-tooltip>
+          <gc-button variant="outline">Hover para ver más</gc-button>
+          <span gcTooltipContent class="flex flex-col gap-1">
+            <strong class="font-semibold">Título del tooltip</strong>
+            <span class="opacity-80 text-xs">Descripción más larga con detalle.</span>
+          </span>
+        </gc-tooltip>
+      </div>
+    </doc-example>
+
+    <doc-example title="En contexto" [code]="contextCode">
+      <div class="flex flex-wrap items-center gap-4 py-4">
+        <gc-tooltip content="Eliminar permanentemente" placement="top" background="#dc2626">
+          <gc-button background="#dc2626" size="sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+            Eliminar
+          </gc-button>
+        </gc-tooltip>
+        <gc-tooltip content="Solo usuarios con rol Admin" placement="right">
+          <gc-button variant="secondary" size="sm">
+            Configuración
+            <gc-badge size="sm" background="#f59e0b" color="#000">Admin</gc-badge>
+          </gc-button>
+        </gc-tooltip>
+      </div>
+    </doc-example>
+  </section>
+</div>

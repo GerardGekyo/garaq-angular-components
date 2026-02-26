@@ -1,0 +1,22 @@
+<div class="gc-tablist" role="tablist">
+  @for (tab of _normalizedTabs(); track tab.value; let i = $index) {
+    <button
+      type="button"
+      class="gc-tab"
+      role="tab"
+      [class.gc-tab-active]="_activeValue() === tab.value"
+      [class.gc-tab-disabled]="tab.disabled"
+      [attr.aria-selected]="_activeValue() === tab.value"
+      [attr.aria-disabled]="tab.disabled || null"
+      [tabindex]="_activeValue() === tab.value ? 0 : -1"
+      (click)="_selectTab(tab)"
+      (keydown)="_onKeydown($event, _normalizedTabs(), i)"
+    >
+      {{ tab.label }}
+    </button>
+  }
+</div>
+
+<div class="gc-panel" role="tabpanel">
+  <ng-content />
+</div>

@@ -1,0 +1,224 @@
+<gc-card variant="elevated" class="w-full max-w-lg">
+  <!-- Header -->
+  <div gcCardHeader class="text-center space-y-4">
+    <gc-avatar size="xl" [name]="fullName()" background="#18181b" />
+    <div class="space-y-1">
+      <h1 class="text-xl font-bold text-gray-900">Crear cuenta</h1>
+      <p class="text-sm text-gray-500">Completa los pasos para registrarte</p>
+    </div>
+    <!-- Step indicators -->
+    <div class="gc-stepper">
+      <div class="gc-step" [class.gc-step-active]="step() >= 1">
+        <span class="gc-step-circle">1</span>
+        <span class="gc-step-label">Datos</span>
+      </div>
+      <div class="gc-step-line" [class.gc-step-line-active]="step() >= 2"></div>
+      <div class="gc-step" [class.gc-step-active]="step() >= 2">
+        <span class="gc-step-circle">2</span>
+        <span class="gc-step-label">Cuenta</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Validation errors -->
+  @if (validationErrors().length > 0) {
+    <gc-alert
+      variant="error"
+      title="Errores de validación"
+      dismissible
+      (dismissed)="validationErrors.set([])"
+    >
+      <ul class="list-disc list-inside text-sm space-y-0.5">
+        @for (error of validationErrors(); track error) {
+          <li>{{ error }}</li>
+        }
+      </ul>
+    </gc-alert>
+  }
+
+  <!-- Step 1: Personal data -->
+  @if (step() === 1) {
+    <div class="space-y-4">
+      <!-- Name grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <gc-input
+          inputLabel="Nombre"
+          placeholder="Juan"
+          [value]="firstName()"
+          (valueChange)="firstName.set($event)"
+        >
+          <svg
+            gcPrefix
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </gc-input>
+        <gc-input
+          inputLabel="Apellido"
+          placeholder="Pérez"
+          [value]="lastName()"
+          (valueChange)="lastName.set($event)"
+        />
+      </div>
+
+      <!-- Email -->
+      <gc-input
+        inputLabel="Email"
+        placeholder="juan@email.com"
+        type="email"
+        [value]="email()"
+        (valueChange)="email.set($event)"
+      >
+        <svg
+          gcPrefix
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect width="20" height="16" x="2" y="4" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+      </gc-input>
+
+      <!-- Account type -->
+      <div class="space-y-2">
+        <span class="text-sm font-medium text-gray-700">Tipo de cuenta</span>
+        <div class="flex gap-6">
+          <gc-radio-button
+            name="accountType"
+            value="personal"
+            label="Personal"
+            description="Para uso individual"
+            [checked]="accountType() === 'personal'"
+            (checkedChange)="accountType.set($event)"
+          />
+          <gc-radio-button
+            name="accountType"
+            value="empresa"
+            label="Empresa"
+            description="Para equipos y organizaciones"
+            [checked]="accountType() === 'empresa'"
+            (checkedChange)="accountType.set($event)"
+          />
+        </div>
+      </div>
+
+      <!-- Next step -->
+      <gc-button class="w-full" (click)="nextStep()">Siguiente</gc-button>
+    </div>
+  }
+
+  <!-- Step 2: Account setup -->
+  @if (step() === 2) {
+    <div class="space-y-4">
+      <!-- Password -->
+      <gc-tooltip content="Mínimo 6 caracteres" placement="top" class="w-full">
+        <gc-input
+          inputLabel="Contraseña"
+          placeholder="••••••••"
+          type="password"
+          [value]="password()"
+          (valueChange)="password.set($event)"
+        >
+          <svg
+            gcPrefix
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </gc-input>
+      </gc-tooltip>
+
+      <!-- Confirm password -->
+      <gc-input
+        inputLabel="Confirmar contraseña"
+        placeholder="••••••••"
+        type="password"
+        [value]="confirmPassword()"
+        [invalid]="passwordMismatch()"
+        [inputDescription]="passwordMismatch() ? 'Las contraseñas no coinciden' : ''"
+        (valueChange)="confirmPassword.set($event)"
+      >
+        <svg
+          gcPrefix
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      </gc-input>
+
+      <!-- Terms -->
+      <div class="flex flex-col gap-4">
+        <gc-checkbox [checked]="acceptTerms()" (checkedChange)="acceptTerms.set($event)">
+          Acepto los
+          <a href="#" class="font-medium text-gray-900 hover:underline">términos y condiciones</a>
+          y la
+          <a href="#" class="font-medium text-gray-900 hover:underline">política de privacidad</a>
+        </gc-checkbox>
+
+        <!-- Newsletter -->
+        <gc-switch-button
+          label="Newsletter"
+          description="Recibir novedades y actualizaciones por email"
+          [checked]="newsletter()"
+          (checkedChange)="newsletter.set($event)"
+        />
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex gap-3">
+        <gc-button variant="outline" class="flex-1" (click)="step.set(1)">Atrás</gc-button>
+        <gc-button class="flex-1" [disabled]="loading()" (click)="onRegister()">
+          @if (loading()) {
+            <gc-spinner size="xs" color="#fff" />
+            Creando cuenta...
+          } @else {
+            Crear cuenta
+          }
+        </gc-button>
+      </div>
+    </div>
+  }
+
+  <!-- Footer -->
+  <div gcCardFooter class="text-center">
+    <p class="text-sm text-gray-500">
+      ¿Ya tienes cuenta?
+      <a routerLink="/examples/login" class="font-medium text-gray-900 hover:underline">Iniciar sesión</a>
+    </p>
+  </div>
+</gc-card>

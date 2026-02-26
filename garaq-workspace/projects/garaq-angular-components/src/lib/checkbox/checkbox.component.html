@@ -24,7 +24,7 @@
     @if (label()) {
       <span class="gc-label">{{ label() }}</span>
     }
-    <ng-content />
+    <span class="gc-content"><ng-content /></span>
     @if (description()) {
       <p class="gc-description">{{ description() }}</p>
     }

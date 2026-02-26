@@ -1,0 +1,56 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Tabs</h1>
+      <gc-badge size="sm" variant="secondary">gc-tabs</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Navegación por pestañas con soporte de teclado completo.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">tabs</td><td class="p-2 font-mono text-xs">(string | GcTab)[]</td><td class="p-2 font-mono text-xs">required</td><td class="p-2 text-gray-600">Lista de pestañas</td></tr>
+          <tr><td class="p-2 font-mono text-xs">value</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Tab activa</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color del indicador activo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Simples (strings)" [code]="simpleCode">
+      <div class="max-w-lg">
+        <gc-tabs [tabs]="simpleTabs" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Rich (con disabled y valor controlado)" [code]="richCode">
+      <div class="max-w-lg">
+        <gc-tabs [tabs]="richTabs" [value]="selectedTab()" (valueChange)="selectedTab.set($event)" />
+        <p class="mt-3 text-xs text-gray-500">Tab activa: <strong>{{ selectedTab() }}</strong></p>
+      </div>
+    </doc-example>
+
+    <doc-example title="Color personalizado" [code]="colorCode">
+      <div class="max-w-lg">
+        <gc-tabs [tabs]="simpleTabs" color="#16a34a" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Colores variados" [code]="variedCode">
+      <div class="flex flex-col gap-6 max-w-lg">
+        <gc-tabs [tabs]="['Inicio', 'Perfil', 'Config']" color="#7c3aed" />
+        <gc-tabs [tabs]="['Fotos', 'Videos', 'Audio']" color="#ec4899" />
+        <gc-tabs [tabs]="['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes']" color="#ea580c" />
+      </div>
+    </doc-example>
+  </section>
+</div>

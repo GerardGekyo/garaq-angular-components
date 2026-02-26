@@ -1,0 +1,155 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  /* Accent: checked border, dot, focus ring */
+  --gc-radio-color: #2563eb;
+  /* Dot color (inside the circle when checked) */
+  --gc-radio-dot: #ffffff;
+  /* Border when unchecked */
+  --gc-radio-border: #d1d5db;
+  /* Background when unchecked */
+  --gc-radio-bg: #ffffff;
+
+  /* Internal size token — updated per size class */
+  --_circle: 1rem;
+  --_dot: 0.375rem;
+
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────────────── */
+
+:host(.gc-size-sm) {
+  --_circle: 0.875rem;
+  --_dot: 0.3125rem;
+  font-size: 0.75rem;
+}
+
+:host(.gc-size-default) {
+  --_circle: 1rem;
+  --_dot: 0.375rem;
+  font-size: 0.875rem;
+}
+
+:host(.gc-size-lg) {
+  --_circle: 1.25rem;
+  --_dot: 0.5rem;
+  font-size: 1rem;
+}
+
+/* ─── Root label ─────────────────────────────────────────────────────────── */
+
+.gc-root {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ─── Visually hidden native input (still focusable via keyboard) ────────── */
+
+.gc-native {
+  position: absolute;
+  width: var(--_circle);
+  height: var(--_circle);
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* ─── Custom circle ──────────────────────────────────────────────────────── */
+
+.gc-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--_circle);
+  height: var(--_circle);
+  border-radius: 50%;
+  border: 1.5px solid var(--gc-radio-border);
+  background: var(--gc-radio-bg);
+  margin-top: 0.0625rem; /* optical alignment with text */
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* Focus ring via keyboard — native input triggers sibling .gc-circle */
+.gc-native:focus-visible ~ .gc-circle {
+  border-color: var(--gc-radio-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gc-radio-color) 25%, transparent);
+}
+
+/* ─── Dot ────────────────────────────────────────────────────────────────── */
+
+.gc-dot {
+  width: var(--_dot);
+  height: var(--_dot);
+  border-radius: 50%;
+  background: var(--gc-radio-dot);
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity 0.12s ease,
+    transform 0.12s ease;
+}
+
+/* ─── Checked state ──────────────────────────────────────────────────────── */
+
+:host(.gc-checked) .gc-circle {
+  background: var(--gc-radio-color);
+  border-color: var(--gc-radio-color);
+}
+
+:host(.gc-checked) .gc-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Text column ────────────────────────────────────────────────────────── */
+
+.gc-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+  line-height: 1.25rem;
+}
+
+.gc-text:empty {
+  display: none;
+}
+
+.gc-content:empty {
+  display: none;
+}
+
+.gc-label {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.gc-description {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────── */
+
+:host(.gc-disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:host(.gc-disabled) .gc-root {
+  cursor: not-allowed;
+  pointer-events: none;
+}

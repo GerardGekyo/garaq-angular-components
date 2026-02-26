@@ -1,0 +1,76 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Switch</h1>
+      <gc-badge size="sm" variant="secondary">gc-switch-button</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Interruptor toggle para opciones on/off.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">label</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto del label</td></tr>
+          <tr><td class="p-2 font-mono text-xs">description</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto de ayuda</td></tr>
+          <tr><td class="p-2 font-mono text-xs">checked</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Estado on/off</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el switch</td></tr>
+          <tr><td class="p-2 font-mono text-xs">size</td><td class="p-2 font-mono text-xs">SwitchSize</td><td class="p-2 font-mono text-xs">'default'</td><td class="p-2 text-gray-600">sm | default | lg</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color personalizado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Default" [code]="defaultCode">
+      <div class="flex flex-col gap-4">
+        <gc-switch-button label="Modo oscuro" description="Activar el tema oscuro." [checked]="darkMode()" (checkedChange)="darkMode.set($event)" />
+        <gc-switch-button label="Notificaciones" description="Recibir alertas por correo." [checked]="notifications()" (checkedChange)="notifications.set($event)" />
+        <gc-switch-button label="Auto-guardado" [checked]="autoSave()" (checkedChange)="autoSave.set($event)" />
+        <p class="text-xs text-gray-500">
+          Dark: <strong>{{ darkMode() }}</strong> · Notifications: <strong>{{ notifications() }}</strong> · AutoSave: <strong>{{ autoSave() }}</strong>
+        </p>
+      </div>
+    </doc-example>
+
+    <doc-example title="Tamaños" [code]="sizesCode">
+      <div class="flex flex-col gap-4">
+        <gc-switch-button size="sm" label="Small" checked />
+        <gc-switch-button size="default" label="Default" checked />
+        <gc-switch-button size="lg" label="Large" checked />
+      </div>
+    </doc-example>
+
+    <doc-example title="Contenido proyectado" [code]="projectedCode">
+      <div class="flex flex-col gap-4">
+        <gc-switch-button>
+          <span class="font-medium text-sm text-gray-900">Aceptar términos</span>
+          <span class="text-xs text-gray-500">Acepto los <u>términos y condiciones</u> del servicio.</span>
+        </gc-switch-button>
+      </div>
+    </doc-example>
+
+    <doc-example title="Colores personalizados" [code]="colorsCode">
+      <div class="flex flex-col gap-4">
+        <gc-switch-button label="Verde" color="#16a34a" checked />
+        <gc-switch-button label="Violeta" color="#8b5cf6" checked />
+        <gc-switch-button label="Rosa" color="#ec4899" checked />
+        <gc-switch-button label="Naranja" color="#ea580c" checked />
+      </div>
+    </doc-example>
+
+    <doc-example title="Deshabilitado" [code]="disabledCode">
+      <div class="flex flex-col gap-4">
+        <gc-switch-button label="Off disabled" disabled />
+        <gc-switch-button label="On disabled" checked disabled />
+      </div>
+    </doc-example>
+  </section>
+</div>

@@ -1,0 +1,90 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Combobox</h1>
+      <gc-badge size="sm" variant="secondary">gc-combobox</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Selector con búsqueda, modo single o multiple, y tags.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">mode</td><td class="p-2 font-mono text-xs">'single' | 'multiple'</td><td class="p-2 font-mono text-xs">'single'</td><td class="p-2 text-gray-600">Modo de selección</td></tr>
+          <tr><td class="p-2 font-mono text-xs">options</td><td class="p-2 font-mono text-xs">(string | GcComboboxOption)[]</td><td class="p-2 font-mono text-xs">[]</td><td class="p-2 text-gray-600">Lista de opciones</td></tr>
+          <tr><td class="p-2 font-mono text-xs">value</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Valor seleccionado (single)</td></tr>
+          <tr><td class="p-2 font-mono text-xs">values</td><td class="p-2 font-mono text-xs">string[]</td><td class="p-2 font-mono text-xs">[]</td><td class="p-2 text-gray-600">Valores seleccionados (multiple)</td></tr>
+          <tr><td class="p-2 font-mono text-xs">placeholder</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Placeholder del input</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el combobox</td></tr>
+          <tr><td class="p-2 font-mono text-xs">invalid</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Marca como inválido</td></tr>
+          <tr><td class="p-2 font-mono text-xs">emptyText</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">—</td><td class="p-2 text-gray-600">Texto cuando no hay resultados</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de focus</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Single select (strings)" [code]="singleCode">
+      <div class="max-w-sm">
+        <gc-combobox inputLabel="Fruta favorita" inputDescription="Escribe para buscar en la lista." placeholder="Buscar fruta..." [options]="fruits" [value]="selectedFruit()" (valueChange)="selectedFruit.set($event)" />
+        <p class="mt-2 text-xs text-gray-500">Seleccionado: <strong>{{ selectedFruit() ?? '—' }}</strong></p>
+      </div>
+    </doc-example>
+
+    <doc-example title="Rich options (con descripción y disabled)" [code]="richCode">
+      <div class="max-w-sm">
+        <gc-combobox inputLabel="País" placeholder="Selecciona un país..." [options]="countries" [value]="selectedCountry()" (valueChange)="selectedCountry.set($event)" />
+        <p class="mt-2 text-xs text-gray-500">Seleccionado: <strong>{{ selectedCountry() ?? '—' }}</strong></p>
+      </div>
+    </doc-example>
+
+    <doc-example title="Con prefix icon" [code]="prefixCode">
+      <div class="max-w-sm">
+        <gc-combobox inputLabel="Buscar framework" placeholder="Buscar..." [options]="frameworks">
+          <svg gcPrefix xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </gc-combobox>
+      </div>
+    </doc-example>
+
+    <doc-example title="Multi select" [code]="multiCode">
+      <div class="max-w-md">
+        <gc-combobox mode="multiple" inputLabel="Frameworks" inputDescription="Selecciona uno o más." placeholder="Buscar framework..." [options]="frameworks" [values]="selectedFrameworks()" (valuesChange)="selectedFrameworks.set($event)" />
+        <p class="mt-2 text-xs text-gray-500">Seleccionados: <strong>{{ selectedFrameworks().join(', ') || '—' }}</strong></p>
+      </div>
+    </doc-example>
+
+    <doc-example title="Multi select (valores iniciales)" [code]="preselectedCode">
+      <div class="max-w-md">
+        <gc-combobox mode="multiple" inputLabel="Stack favorito" placeholder="Agregar..." [options]="frameworks" [values]="selectedTags()" (valuesChange)="selectedTags.set($event)" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Estados" [code]="statesCode">
+      <div class="flex flex-col gap-6 max-w-sm">
+        <gc-combobox inputLabel="Inválido" inputDescription="Este campo es requerido." placeholder="Selecciona..." [options]="fruits" invalid />
+        <gc-combobox inputLabel="Deshabilitado" placeholder="No disponible" [options]="fruits" disabled />
+        <gc-combobox mode="multiple" inputLabel="Multi deshabilitado" placeholder="No disponible" [options]="frameworks" [values]="['angular']" disabled />
+      </div>
+    </doc-example>
+
+    <doc-example title="Empty state personalizado" [code]="emptyCode">
+      <div class="max-w-sm">
+        <gc-combobox inputLabel="Lista vacía" placeholder="Buscar..." [options]="[]" emptyText="No hay opciones disponibles" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Color personalizado" [code]="colorCode">
+      <div class="max-w-sm">
+        <gc-combobox inputLabel="Tema violeta" placeholder="Elige un color..." [options]="fruits" color="#8b5cf6" />
+      </div>
+    </doc-example>
+  </section>
+</div>

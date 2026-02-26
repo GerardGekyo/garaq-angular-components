@@ -1,0 +1,257 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-select-bg: #ffffff;
+  --gc-select-border: #d1d5db;
+  --gc-select-radius: 0.375rem;
+  --gc-select-focus: #2563eb;
+  --gc-select-error: #ef4444;
+  --gc-select-text: #0f172a;
+  --gc-select-placeholder: #94a3b8;
+  --gc-select-option-hover: #f1f5f9;
+  --gc-select-option-selected: #eff6ff;
+  --gc-select-empty: #64748b;
+  --gc-select-description: #64748b;
+  --gc-select-option-description: #64748b;
+  --gc-select-disabled-bg: #f9fafb;
+  --gc-select-disabled-text: #9ca3af;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  font-family: inherit;
+}
+
+/* ─── Label ──────────────────────────────────────────────────────────────── */
+
+.gc-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gc-select-text);
+  line-height: 1.25rem;
+}
+
+/* ─── Trigger button ─────────────────────────────────────────────────────── */
+
+.gc-trigger {
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  gap: 0.5rem;
+  border: 1px solid var(--gc-select-border);
+  border-radius: var(--gc-select-radius);
+  background: var(--gc-select-bg);
+  color: var(--gc-select-text);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  box-sizing: border-box;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.gc-trigger:focus-visible {
+  outline: none;
+  border-color: var(--gc-select-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gc-select-focus) 20%, transparent);
+}
+
+/* ─── Value / Placeholder ────────────────────────────────────────────────── */
+
+.gc-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gc-placeholder {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--gc-select-placeholder);
+}
+
+/* ─── Prefix ─────────────────────────────────────────────────────────────── */
+
+.gc-prefix {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--gc-select-placeholder);
+}
+
+.gc-prefix:empty {
+  display: none;
+}
+
+/* ─── Chevron ────────────────────────────────────────────────────────────── */
+
+.gc-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--gc-select-placeholder);
+  margin-left: auto;
+  transition: transform 0.15s ease;
+}
+
+.gc-chevron svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+:host(.gc-open) .gc-chevron {
+  transform: rotate(180deg);
+}
+
+/* ─── Dropdown listbox ───────────────────────────────────────────────────── */
+
+.gc-listbox {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  margin: 0.25rem 0 0;
+  padding: 0.25rem;
+  list-style: none;
+  background: var(--gc-select-bg);
+  border: 1px solid var(--gc-select-border);
+  border-radius: var(--gc-select-radius);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  max-height: 15rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ─── Option ─────────────────────────────────────────────────────────────── */
+
+.gc-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: calc(var(--gc-select-radius) - 2px);
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.gc-option-highlighted {
+  background: var(--gc-select-option-hover);
+}
+
+.gc-option-selected {
+  background: var(--gc-select-option-selected);
+}
+
+.gc-option-highlighted.gc-option-selected {
+  background: var(--gc-select-option-selected);
+}
+
+.gc-option-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Check icon column */
+.gc-option-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1.25rem;
+  color: var(--gc-select-focus);
+}
+
+.gc-option-check svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Option content */
+.gc-option-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.gc-option-label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--gc-select-text);
+}
+
+.gc-option-description {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: var(--gc-select-option-description);
+}
+
+/* ─── Empty state ────────────────────────────────────────────────────────── */
+
+.gc-empty {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--gc-select-empty);
+}
+
+/* ─── Description ────────────────────────────────────────────────────────── */
+
+.gc-description {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: var(--gc-select-description);
+  margin: 0;
+}
+
+/* ─── Invalid ────────────────────────────────────────────────────────────── */
+
+:host(.gc-invalid) .gc-trigger {
+  border-color: var(--gc-select-error);
+}
+
+:host(.gc-invalid) .gc-trigger:focus-visible {
+  border-color: var(--gc-select-error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gc-select-error) 20%, transparent);
+}
+
+:host(.gc-invalid) .gc-description {
+  color: var(--gc-select-error);
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────── */
+
+:host(.gc-disabled) .gc-label {
+  color: var(--gc-select-disabled-text);
+}
+
+:host(.gc-disabled) .gc-trigger {
+  background: var(--gc-select-disabled-bg);
+  border-color: #e5e7eb;
+  color: var(--gc-select-disabled-text);
+  cursor: not-allowed;
+}
+
+:host(.gc-disabled) .gc-trigger:focus-visible {
+  border-color: #e5e7eb;
+  box-shadow: none;
+}
+
+:host(.gc-disabled) .gc-chevron {
+  color: var(--gc-select-disabled-text);
+}

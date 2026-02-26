@@ -1,0 +1,16 @@
+@for (toast of _service.toasts(); track toast.id) {
+  <div class="gc-toast-item" [class]="'gc-variant-' + toast.variant" role="status">
+    <span class="gc-toast-message">{{ toast.message }}</span>
+    <button
+      type="button"
+      class="gc-toast-close"
+      aria-label="Dismiss"
+      (click)="_dismiss(toast.id)"
+    >
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="4" y1="4" x2="12" y2="12" />
+        <line x1="12" y1="4" x2="4" y2="12" />
+      </svg>
+    </button>
+  </div>
+}

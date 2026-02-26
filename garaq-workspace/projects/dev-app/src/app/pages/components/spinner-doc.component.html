@@ -1,0 +1,108 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Spinner</h1>
+      <gc-badge size="sm" variant="secondary">gc-spinner</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Indicador de carga con animaciones y contenido personalizable.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">size</td><td class="p-2 font-mono text-xs">SpinnerSize</td><td class="p-2 font-mono text-xs">'default'</td><td class="p-2 text-gray-600">xs | sm | default | lg</td></tr>
+          <tr><td class="p-2 font-mono text-xs">animation</td><td class="p-2 font-mono text-xs">SpinnerAnimation</td><td class="p-2 font-mono text-xs">'spin'</td><td class="p-2 text-gray-600">spin | pulse | bounce | none</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color personalizado</td></tr>
+          <tr><td class="p-2 font-mono text-xs">ariaLabel</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">'Loading'</td><td class="p-2 text-gray-600">Etiqueta accesible</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Tamaños" [code]="sizesCode">
+      <div class="flex flex-wrap items-center gap-6">
+        <gc-spinner size="xs" />
+        <gc-spinner size="sm" />
+        <gc-spinner />
+        <gc-spinner size="lg" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Animaciones" [code]="animationsCode">
+      <div class="flex flex-wrap items-center gap-8">
+        <div class="flex flex-col items-center gap-2">
+          <gc-spinner animation="spin" size="lg" />
+          <span class="text-xs text-gray-400">spin</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <gc-spinner animation="pulse" size="lg" />
+          <span class="text-xs text-gray-400">pulse</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <gc-spinner animation="bounce" size="lg" />
+          <span class="text-xs text-gray-400">bounce</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <gc-spinner animation="none" size="lg" />
+          <span class="text-xs text-gray-400">none</span>
+        </div>
+      </div>
+    </doc-example>
+
+    <doc-example title="Colores" [code]="colorsCode">
+      <div class="flex flex-wrap items-center gap-6">
+        <gc-spinner />
+        <gc-spinner color="#7c3aed" />
+        <gc-spinner color="#16a34a" />
+        <gc-spinner color="#dc2626" />
+        <gc-spinner color="#f59e0b" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Contenido personalizado" [code]="customCode">
+      <div class="flex flex-wrap items-center gap-8">
+        <div class="flex flex-col items-center gap-2">
+          <gc-spinner size="lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 0 1 10 10" /><circle cx="12" cy="12" r="3" fill="currentColor" />
+            </svg>
+          </gc-spinner>
+          <span class="text-xs text-gray-400">SVG custom</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <gc-spinner size="lg" animation="bounce">
+            <span style="font-size: 1.5rem; line-height: 1">&#9881;&#65039;</span>
+          </gc-spinner>
+          <span class="text-xs text-gray-400">emoji + bounce</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <gc-spinner size="lg" animation="pulse" color="#7c3aed">
+            <span class="font-black text-lg" style="color: currentColor">G</span>
+          </gc-spinner>
+          <span class="text-xs text-gray-400">letra + pulse</span>
+        </div>
+      </div>
+    </doc-example>
+
+    <doc-example title="En contexto" description="Spinner dentro de botones para estados de carga." [code]="contextCode">
+      <div class="flex flex-wrap items-center gap-4">
+        <gc-button>
+          <gc-spinner size="xs" color="#ffffff" />
+          Guardando...
+        </gc-button>
+        <gc-button variant="outline">
+          <gc-spinner size="xs" />
+          Cargando
+        </gc-button>
+      </div>
+    </doc-example>
+  </section>
+</div>

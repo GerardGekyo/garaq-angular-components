@@ -1,0 +1,92 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Radio Button</h1>
+      <gc-badge size="sm" variant="secondary">gc-radio-button</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Botón de opción para selección exclusiva en grupo.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">name</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">required</td><td class="p-2 text-gray-600">Nombre del grupo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">value</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">required</td><td class="p-2 text-gray-600">Valor del radio</td></tr>
+          <tr><td class="p-2 font-mono text-xs">label</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto del label</td></tr>
+          <tr><td class="p-2 font-mono text-xs">description</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto de ayuda</td></tr>
+          <tr><td class="p-2 font-mono text-xs">checked</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Estado seleccionado</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el radio</td></tr>
+          <tr><td class="p-2 font-mono text-xs">size</td><td class="p-2 font-mono text-xs">RadioSize</td><td class="p-2 font-mono text-xs">'default'</td><td class="p-2 text-gray-600">sm | default | lg</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color personalizado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Grupo básico" [code]="basicCode">
+      <div class="flex flex-col gap-3">
+        <gc-radio-button name="plan" value="free" label="Free" description="Acceso limitado, sin costo." [checked]="selectedPlan() === 'free'" (checkedChange)="selectedPlan.set($event)" />
+        <gc-radio-button name="plan" value="pro" label="Pro" description="Todas las funcionalidades." [checked]="selectedPlan() === 'pro'" (checkedChange)="selectedPlan.set($event)" />
+        <gc-radio-button name="plan" value="enterprise" label="Enterprise" description="Soporte dedicado y SLA." [checked]="selectedPlan() === 'enterprise'" (checkedChange)="selectedPlan.set($event)" />
+        <p class="text-xs text-gray-500">Plan seleccionado: <strong>{{ selectedPlan() }}</strong></p>
+      </div>
+    </doc-example>
+
+    <doc-example title="Tamaños" [code]="sizesCode">
+      <div class="flex flex-col gap-4">
+        <gc-radio-button name="size-demo" value="sm" size="sm" label="Small" checked />
+        <gc-radio-button name="size-demo" value="default" size="default" label="Default" />
+        <gc-radio-button name="size-demo" value="lg" size="lg" label="Large" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Horizontal" [code]="horizontalCode">
+      <div class="flex gap-6">
+        <gc-radio-button name="color" value="red" label="Rojo" [checked]="selectedColor() === 'red'" (checkedChange)="selectedColor.set($event)" />
+        <gc-radio-button name="color" value="blue" label="Azul" [checked]="selectedColor() === 'blue'" (checkedChange)="selectedColor.set($event)" />
+        <gc-radio-button name="color" value="green" label="Verde" [checked]="selectedColor() === 'green'" (checkedChange)="selectedColor.set($event)" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Colores personalizados" [code]="colorsCode">
+      <div class="flex flex-col gap-3">
+        <gc-radio-button name="themed" value="a" label="Verde" color="#16a34a" checked />
+        <gc-radio-button name="themed" value="b" label="Violeta" color="#8b5cf6" />
+        <gc-radio-button name="themed" value="c" label="Rosa" color="#ec4899" />
+      </div>
+    </doc-example>
+
+    <doc-example title="Contenido proyectado" [code]="projectedCode">
+      <div class="flex flex-col gap-3">
+        <gc-radio-button name="shipping" value="standard" [checked]="selectedShipping() === 'standard'" (checkedChange)="selectedShipping.set($event)">
+          <span class="font-medium text-sm text-gray-900">Envío estándar</span>
+          <span class="text-xs text-gray-500">5-7 días hábiles - Gratis</span>
+        </gc-radio-button>
+        <gc-radio-button name="shipping" value="express" [checked]="selectedShipping() === 'express'" (checkedChange)="selectedShipping.set($event)">
+          <span class="font-medium text-sm text-gray-900">Envío express</span>
+          <span class="text-xs text-gray-500">1-2 días hábiles - $9.99</span>
+        </gc-radio-button>
+        <gc-radio-button name="shipping" value="overnight" [checked]="selectedShipping() === 'overnight'" (checkedChange)="selectedShipping.set($event)">
+          <span class="font-medium text-sm text-gray-900">Envío nocturno</span>
+          <span class="text-xs text-gray-500">Entrega al día siguiente - $19.99</span>
+        </gc-radio-button>
+      </div>
+    </doc-example>
+
+    <doc-example title="Deshabilitado" [code]="disabledCode">
+      <div class="flex flex-col gap-3">
+        <gc-radio-button name="disabled-demo" value="a" label="Opción A" disabled />
+        <gc-radio-button name="disabled-demo" value="b" label="Opción B (seleccionada)" checked disabled />
+        <gc-radio-button name="disabled-demo" value="c" label="Opción C" disabled />
+      </div>
+    </doc-example>
+  </section>
+</div>

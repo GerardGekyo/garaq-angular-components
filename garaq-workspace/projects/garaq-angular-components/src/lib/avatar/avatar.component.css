@@ -1,0 +1,51 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-avatar-bg: #e2e8f0;
+  --gc-avatar-color: #475569;
+  --gc-avatar-radius: 9999px;
+  --_size: 2.5rem;
+  --_font: 0.875rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--_size);
+  height: var(--_size);
+  border-radius: var(--gc-avatar-radius);
+  overflow: hidden;
+  background: var(--gc-avatar-bg);
+  color: var(--gc-avatar-color);
+  font-family: inherit;
+  font-size: var(--_font);
+  font-weight: 600;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+/* ─── Sizes ──────────────────────────────────────────────────────────────── */
+
+:host(.gc-size-xs)      { --_size: 1.5rem;  --_font: 0.625rem; }
+:host(.gc-size-sm)      { --_size: 2rem;    --_font: 0.75rem;  }
+:host(.gc-size-default) { --_size: 2.5rem;  --_font: 0.875rem; }
+:host(.gc-size-lg)      { --_size: 3.5rem;  --_font: 1.125rem; }
+:host(.gc-size-xl)      { --_size: 5rem;    --_font: 1.5rem;   }
+
+/* ─── Image ──────────────────────────────────────────────────────────────── */
+
+.gc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Fallback initials ──────────────────────────────────────────────────── */
+
+.gc-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}

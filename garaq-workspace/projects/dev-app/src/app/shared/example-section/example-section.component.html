@@ -1,0 +1,10 @@
+<div class="gc-example">
+  <h3 class="gc-example-title">{{ title() }}</h3>
+  @if (description(); as desc) {
+    <p class="gc-example-desc">{{ desc }}</p>
+  }
+  <div class="gc-example-preview">
+    <ng-content />
+  </div>
+  <doc-code-block [code]="code()" />
+</div>

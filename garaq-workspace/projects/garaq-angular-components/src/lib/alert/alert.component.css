@@ -1,0 +1,125 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-alert-color: #2563eb;
+  --gc-alert-bg: #eff6ff;
+  --gc-alert-border: #2563eb;
+  --gc-alert-text: #0f172a;
+  --gc-alert-radius: 0.5rem;
+
+  display: block;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* ─── Variants ───────────────────────────────────────────────────────────── */
+
+:host(.gc-variant-info) {
+  --gc-alert-color: #2563eb;
+  --gc-alert-bg: #eff6ff;
+  --gc-alert-border: #2563eb;
+}
+
+:host(.gc-variant-success) {
+  --gc-alert-color: #16a34a;
+  --gc-alert-bg: #f0fdf4;
+  --gc-alert-border: #16a34a;
+}
+
+:host(.gc-variant-warning) {
+  --gc-alert-color: #d97706;
+  --gc-alert-bg: #fffbeb;
+  --gc-alert-border: #d97706;
+}
+
+:host(.gc-variant-error) {
+  --gc-alert-color: #dc2626;
+  --gc-alert-bg: #fef2f2;
+  --gc-alert-border: #dc2626;
+}
+
+/* ─── Body ───────────────────────────────────────────────────────────────── */
+
+.gc-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: var(--gc-alert-bg);
+  border-radius: var(--gc-alert-radius);
+  border-left: 3px solid var(--gc-alert-border);
+}
+
+/* ─── Icon ───────────────────────────────────────────────────────────────── */
+
+.gc-icon {
+  display: flex;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--gc-alert-color);
+  margin-top: 0.0625rem;
+}
+
+.gc-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Content ────────────────────────────────────────────────────────────── */
+
+.gc-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.gc-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  color: var(--gc-alert-color);
+  margin: 0;
+}
+
+.gc-message {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  color: var(--gc-alert-text);
+}
+
+/* ─── Close button ───────────────────────────────────────────────────────── */
+
+.gc-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--gc-alert-color);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.gc-close:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--gc-alert-color) 10%, transparent);
+}
+
+.gc-close svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ─── Dismissed ──────────────────────────────────────────────────────────── */
+
+:host(.gc-dismissed) {
+  display: none;
+}

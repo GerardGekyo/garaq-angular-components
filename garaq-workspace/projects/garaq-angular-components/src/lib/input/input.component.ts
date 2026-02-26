@@ -19,6 +19,7 @@ export type InputType = 'text' | 'email' | 'password' | 'number' | 'search' | 't
   host: {
     '[class.gc-disabled]': 'disabled()',
     '[class.gc-invalid]': 'invalid()',
+    '[style.--gc-input-focus]': 'color()',
   },
 })
 export class InputComponent {
@@ -32,6 +33,8 @@ export class InputComponent {
   maxLength = input<number | null>(null);
   disabled = input(false, { transform: booleanAttribute });
   invalid = input(false, { transform: booleanAttribute });
+  /** Sets the accent/focus color */
+  color = input<string | null>(null);
 
   valueChange = output<string>();
 

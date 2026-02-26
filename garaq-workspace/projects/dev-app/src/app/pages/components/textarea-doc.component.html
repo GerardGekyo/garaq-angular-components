@@ -1,0 +1,44 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Textarea</h1>
+      <gc-badge size="sm" variant="secondary">gc-textarea</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Campo de texto multilínea con contador de caracteres.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">inputLabel</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Etiqueta del campo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">inputDescription</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Texto de ayuda</td></tr>
+          <tr><td class="p-2 font-mono text-xs">placeholder</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Placeholder</td></tr>
+          <tr><td class="p-2 font-mono text-xs">rows</td><td class="p-2 font-mono text-xs">number</td><td class="p-2 font-mono text-xs">3</td><td class="p-2 text-gray-600">Número de filas</td></tr>
+          <tr><td class="p-2 font-mono text-xs">maxLength</td><td class="p-2 font-mono text-xs">number | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Límite de caracteres</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el campo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">invalid</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Marca como inválido</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de focus personalizado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Estados" [code]="statesCode">
+      <div class="flex flex-col gap-4 max-w-sm">
+        <gc-textarea inputLabel="Default" placeholder="Escribe algo..." />
+        <gc-textarea inputLabel="Con descripción y límite" placeholder="Cuéntanos sobre ti..." inputDescription="Aparece en tu perfil público." [maxLength]="200" />
+        <gc-textarea inputLabel="Más filas" placeholder="Descripción larga..." [rows]="6" [maxLength]="500" />
+        <gc-textarea inputLabel="Inválido" placeholder="Campo requerido" inputDescription="Este campo no puede estar vacío." invalid />
+        <gc-textarea inputLabel="Deshabilitado" placeholder="No editable" disabled />
+      </div>
+    </doc-example>
+  </section>
+</div>

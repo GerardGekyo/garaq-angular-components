@@ -1,3 +1,27 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
+  { path: 'components/button', loadComponent: () => import('./pages/components/button-doc.component').then(m => m.ButtonDocComponent) },
+  { path: 'components/input', loadComponent: () => import('./pages/components/input-doc.component').then(m => m.InputDocComponent) },
+  { path: 'components/textarea', loadComponent: () => import('./pages/components/textarea-doc.component').then(m => m.TextareaDocComponent) },
+  { path: 'components/badge', loadComponent: () => import('./pages/components/badge-doc.component').then(m => m.BadgeDocComponent) },
+  { path: 'components/checkbox', loadComponent: () => import('./pages/components/checkbox-doc.component').then(m => m.CheckboxDocComponent) },
+  { path: 'components/spinner', loadComponent: () => import('./pages/components/spinner-doc.component').then(m => m.SpinnerDocComponent) },
+  { path: 'components/tooltip', loadComponent: () => import('./pages/components/tooltip-doc.component').then(m => m.TooltipDocComponent) },
+  { path: 'components/card', loadComponent: () => import('./pages/components/card-doc.component').then(m => m.CardDocComponent) },
+  { path: 'components/shimmer', loadComponent: () => import('./pages/components/shimmer-doc.component').then(m => m.ShimmerDocComponent) },
+  { path: 'components/combobox', loadComponent: () => import('./pages/components/combobox-doc.component').then(m => m.ComboboxDocComponent) },
+  { path: 'components/select', loadComponent: () => import('./pages/components/select-doc.component').then(m => m.SelectDocComponent) },
+  { path: 'components/switch-button', loadComponent: () => import('./pages/components/switch-button-doc.component').then(m => m.SwitchButtonDocComponent) },
+  { path: 'components/radio-button', loadComponent: () => import('./pages/components/radio-button-doc.component').then(m => m.RadioButtonDocComponent) },
+  { path: 'components/alert', loadComponent: () => import('./pages/components/alert-doc.component').then(m => m.AlertDocComponent) },
+  { path: 'components/avatar', loadComponent: () => import('./pages/components/avatar-doc.component').then(m => m.AvatarDocComponent) },
+  { path: 'components/dialog', loadComponent: () => import('./pages/components/dialog-doc.component').then(m => m.DialogDocComponent) },
+  { path: 'components/tabs', loadComponent: () => import('./pages/components/tabs-doc.component').then(m => m.TabsDocComponent) },
+  { path: 'components/separator', loadComponent: () => import('./pages/components/separator-doc.component').then(m => m.SeparatorDocComponent) },
+  { path: 'components/toast', loadComponent: () => import('./pages/components/toast-doc.component').then(m => m.ToastDocComponent) },
+  { path: 'examples/login', loadComponent: () => import('./pages/examples/login-example.component').then(m => m.LoginExampleComponent) },
+  { path: 'examples/register', loadComponent: () => import('./pages/examples/register-example.component').then(m => m.RegisterExampleComponent) },
+  { path: '**', redirectTo: '' },
+];

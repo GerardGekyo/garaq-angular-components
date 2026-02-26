@@ -1,0 +1,138 @@
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+:host {
+  --gc-dialog-bg: #ffffff;
+  --gc-dialog-border: #e2e8f0;
+  --gc-dialog-radius: 0.75rem;
+  --gc-dialog-text: #0f172a;
+  --gc-dialog-muted: #64748b;
+  --gc-dialog-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --gc-dialog-backdrop: rgb(0 0 0 / 0.5);
+
+  display: contents;
+}
+
+/* ─── Native dialog reset ────────────────────────────────────────────────── */
+
+.gc-dialog {
+  border: none;
+  padding: 0;
+  margin: auto;
+  max-width: 28rem;
+  width: calc(100% - 2rem);
+  background: transparent;
+  overflow: visible;
+}
+
+.gc-dialog::backdrop {
+  background: var(--gc-dialog-backdrop);
+  animation: gc-dialog-fade-in 0.15s ease;
+}
+
+.gc-dialog[open] {
+  animation: gc-dialog-slide-in 0.2s ease;
+}
+
+/* ─── Panel ──────────────────────────────────────────────────────────────── */
+
+.gc-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--gc-dialog-bg);
+  border-radius: var(--gc-dialog-radius);
+  box-shadow: var(--gc-dialog-shadow);
+  overflow: hidden;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+
+.gc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--gc-dialog-border);
+}
+
+.gc-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  color: var(--gc-dialog-text);
+  margin: 0;
+}
+
+.gc-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--gc-dialog-muted);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.gc-close:hover {
+  color: var(--gc-dialog-text);
+  background: #f1f5f9;
+}
+
+.gc-close svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* ─── Body ───────────────────────────────────────────────────────────────── */
+
+.gc-body {
+  padding: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: var(--gc-dialog-text);
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
+
+.gc-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--gc-dialog-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.gc-footer:empty {
+  display: none;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+
+@keyframes gc-dialog-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gc-dialog-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gc-dialog[open],
+  .gc-dialog::backdrop {
+    animation: none;
+  }
+}

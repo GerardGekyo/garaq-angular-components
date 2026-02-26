@@ -1,0 +1,10 @@
+@if (_showImage()) {
+  <img
+    class="gc-img"
+    [src]="src()"
+    [alt]="alt() || name()"
+    (error)="_onImgError()"
+  />
+} @else {
+  <span class="gc-fallback" aria-hidden="true">{{ _initials() }}</span>
+}

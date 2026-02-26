@@ -1,0 +1,26 @@
+<label class="gc-root">
+  <input
+    class="gc-native"
+    type="radio"
+    [id]="_id"
+    [name]="name()"
+    [value]="value()"
+    [checked]="_currentChecked()"
+    [disabled]="disabled()"
+    (change)="onChange($event)"
+  />
+
+  <span class="gc-circle" aria-hidden="true">
+    <span class="gc-dot"></span>
+  </span>
+
+  <span class="gc-text">
+    @if (label()) {
+      <span class="gc-label">{{ label() }}</span>
+    }
+    <span class="gc-content"><ng-content /></span>
+    @if (description()) {
+      <p class="gc-description">{{ description() }}</p>
+    }
+  </span>
+</label>

@@ -21,10 +21,13 @@ export type ShimmerShape = 'rectangle' | 'circle' | 'pill';
     // allowing Tailwind classes or external CSS to take control.
     '[style.width]': 'width()',
     '[style.height]': 'height()',
+    '[style.--gc-shimmer-base]': 'color()',
   },
 })
 export class ShimmerComponent {
   shape = input<ShimmerShape>('rectangle');
+  /** Sets the shimmer base color */
+  color = input<string | null>(null);
 
   /**
    * Explicit width (e.g. '100%', '200px', '8rem').

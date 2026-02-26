@@ -1,0 +1,123 @@
+@if (inputLabel()) {
+  <label class="gc-label" [for]="_id">{{ inputLabel() }}</label>
+}
+
+<div class="gc-wrapper" (click)="_open(); _inputEl()?.nativeElement?.focus()">
+  <span class="gc-prefix">
+    <ng-content select="[gcPrefix]" />
+  </span>
+
+  <!-- Multi-mode tags -->
+  @if (mode() === 'multiple') {
+    @for (opt of _selectedOptions(); track opt.value) {
+      <span class="gc-tag">
+        <span class="gc-tag-label">{{ opt.label }}</span>
+        <button
+          type="button"
+          class="gc-tag-remove"
+          [disabled]="disabled()"
+          (click)="_removeTag(opt.value); $event.stopPropagation()"
+          [attr.aria-label]="'Remove ' + opt.label"
+        >
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="4" x2="12" y2="12" />
+            <line x1="12" y1="4" x2="4" y2="12" />
+          </svg>
+        </button>
+      </span>
+    }
+  }
+
+  <input
+    #inputEl
+    class="gc-native"
+    role="combobox"
+    [id]="_id"
+    type="text"
+    autocomplete="off"
+    [placeholder]="mode() === 'multiple' && _selectedOptions().length > 0 ? '' : placeholder()"
+    [disabled]="disabled()"
+    [value]="_displayText()"
+    [attr.aria-expanded]="_isOpen()"
+    [attr.aria-controls]="_listboxId"
+    [attr.aria-activedescendant]="_activeDescendantId()"
+    aria-autocomplete="list"
+    (input)="_onInput($event)"
+    (focus)="_onFocus()"
+    (keydown)="_onKeydown($event)"
+  />
+
+  <!-- Clear button (single mode with value) -->
+  @if (mode() === 'single' && _selectedValue() != null && !disabled()) {
+    <button
+      type="button"
+      class="gc-clear"
+      aria-label="Clear selection"
+      (click)="_clearSingle($event)"
+    >
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="4" y1="4" x2="12" y2="12" />
+        <line x1="12" y1="4" x2="4" y2="12" />
+      </svg>
+    </button>
+  }
+
+  <!-- Chevron -->
+  <button
+    type="button"
+    class="gc-chevron"
+    tabindex="-1"
+    [disabled]="disabled()"
+    (click)="_toggle(); $event.stopPropagation()"
+    aria-hidden="true"
+  >
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 6 8 10 12 6" />
+    </svg>
+  </button>
+</div>
+
+<!-- Dropdown -->
+@if (_isOpen()) {
+  <ul
+    class="gc-listbox"
+    role="listbox"
+    [id]="_listboxId"
+    [attr.aria-multiselectable]="mode() === 'multiple' || null"
+  >
+    @for (opt of _filteredOptions(); track opt.value; let i = $index) {
+      <li
+        class="gc-option"
+        role="option"
+        [id]="_id + '-option-' + i"
+        [class.gc-option-highlighted]="i === _highlightedIndex()"
+        [class.gc-option-selected]="_isSelected(opt)"
+        [class.gc-option-disabled]="opt.disabled"
+        [attr.aria-selected]="_isSelected(opt)"
+        [attr.aria-disabled]="opt.disabled || null"
+        (click)="_selectOption(opt)"
+        (mouseenter)="_onOptionMouseenter(i)"
+      >
+        <span class="gc-option-check">
+          @if (_isSelected(opt)) {
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 8 6.5 11.5 13 5" />
+            </svg>
+          }
+        </span>
+        <span class="gc-option-content">
+          <span class="gc-option-label">{{ opt.label }}</span>
+          @if (opt.description) {
+            <span class="gc-option-description">{{ opt.description }}</span>
+          }
+        </span>
+      </li>
+    } @empty {
+      <li class="gc-empty" role="presentation">{{ emptyText() }}</li>
+    }
+  </ul>
+}
+
+@if (inputDescription()) {
+  <p class="gc-description">{{ inputDescription() }}</p>
+}

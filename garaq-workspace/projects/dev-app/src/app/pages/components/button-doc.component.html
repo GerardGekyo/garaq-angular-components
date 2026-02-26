@@ -1,0 +1,95 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Button</h1>
+      <gc-badge size="sm" variant="secondary">gc-button</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Botón interactivo con múltiples variantes, tamaños y colores personalizables.</p>
+  </header>
+
+  <!-- API -->
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">variant</td><td class="p-2 font-mono text-xs">ButtonVariant</td><td class="p-2 font-mono text-xs">'default'</td><td class="p-2 text-gray-600">default | outline | secondary | ghost | link | shadow</td></tr>
+          <tr><td class="p-2 font-mono text-xs">size</td><td class="p-2 font-mono text-xs">ButtonSize</td><td class="p-2 font-mono text-xs">'default'</td><td class="p-2 text-gray-600">default | xs | sm | lg</td></tr>
+          <tr><td class="p-2 font-mono text-xs">disabled</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Deshabilita el botón</td></tr>
+          <tr><td class="p-2 font-mono text-xs">background</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de fondo personalizado</td></tr>
+          <tr><td class="p-2 font-mono text-xs">color</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Color de texto personalizado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Examples -->
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Variantes" [code]="variantsCode">
+      <div class="flex flex-wrap gap-3">
+        <gc-button>Default</gc-button>
+        <gc-button variant="outline">Outline</gc-button>
+        <gc-button variant="secondary">Secondary</gc-button>
+        <gc-button variant="shadow">Shadow</gc-button>
+        <gc-button variant="ghost">Ghost</gc-button>
+        <gc-button variant="link">Link</gc-button>
+      </div>
+    </doc-example>
+
+    <doc-example title="Tamaños" [code]="sizesCode">
+      <div class="flex flex-wrap items-center gap-3">
+        <gc-button size="xs">Extra Small</gc-button>
+        <gc-button size="sm">Small</gc-button>
+        <gc-button>Default</gc-button>
+        <gc-button size="lg">Large</gc-button>
+      </div>
+    </doc-example>
+
+    <doc-example title="Variantes x Tamaños" [code]="matrixCode">
+      <div class="space-y-3">
+        @for (variant of variants; track variant) {
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="w-20 text-sm text-gray-500">{{ variant }}</span>
+            <gc-button [variant]="variant" size="xs">XS</gc-button>
+            <gc-button [variant]="variant" size="sm">SM</gc-button>
+            <gc-button [variant]="variant">Default</gc-button>
+            <gc-button [variant]="variant" size="lg">LG</gc-button>
+          </div>
+        }
+      </div>
+    </doc-example>
+
+    <doc-example title="Deshabilitado" [code]="disabledCode">
+      <div class="flex flex-wrap gap-3">
+        <gc-button disabled>Default</gc-button>
+        <gc-button variant="outline" disabled>Outline</gc-button>
+        <gc-button variant="secondary" disabled>Secondary</gc-button>
+        <gc-button variant="ghost" disabled>Ghost</gc-button>
+        <gc-button variant="link" disabled>Link</gc-button>
+        <gc-button variant="shadow" disabled>Shadow</gc-button>
+      </div>
+    </doc-example>
+
+    <doc-example title="Colores personalizados" [code]="colorsCode">
+      <div class="flex flex-wrap gap-3">
+        <gc-button background="#7c3aed">Violet</gc-button>
+        <gc-button variant="outline" background="#dc2626">Red outline</gc-button>
+        <gc-button background="#16a34a">Green</gc-button>
+        <gc-button variant="shadow" background="#f59e0b" color="#000">Amber shadow</gc-button>
+        <gc-button variant="shadow" background="#7c3aed">Violet shadow</gc-button>
+      </div>
+    </doc-example>
+
+    <doc-example title="Tailwind en host" [code]="tailwindCode">
+      <div class="flex flex-col gap-3">
+        <gc-button class="w-full">Full width</gc-button>
+        <gc-button variant="outline" class="w-64">Fixed width (w-64)</gc-button>
+      </div>
+    </doc-example>
+  </section>
+</div>

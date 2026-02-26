@@ -1,0 +1,79 @@
+<div class="p-8 max-w-4xl mx-auto space-y-10">
+  <header>
+    <div class="flex items-center gap-3 mb-1">
+      <h1 class="text-2xl font-bold text-gray-900">Dialog</h1>
+      <gc-badge size="sm" variant="secondary">gc-dialog</gc-badge>
+    </div>
+    <p class="text-sm text-gray-500">Ventana modal para confirmaciones y contenido focalizado.</p>
+  </header>
+
+  <section>
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">API</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Input</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Default</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">open</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 font-mono text-xs">false</td><td class="p-2 text-gray-600">Controla si el diálogo está abierto</td></tr>
+          <tr><td class="p-2 font-mono text-xs">title</td><td class="p-2 font-mono text-xs">string</td><td class="p-2 font-mono text-xs">''</td><td class="p-2 text-gray-600">Título del diálogo</td></tr>
+          <tr><td class="p-2 font-mono text-xs">maxWidth</td><td class="p-2 font-mono text-xs">string | null</td><td class="p-2 font-mono text-xs">null</td><td class="p-2 text-gray-600">Ancho máximo CSS</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="text-xs font-semibold text-gray-500 mt-4 mb-2">Outputs</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Output</th><th class="text-left p-2 font-medium text-gray-600">Type</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">openChange</td><td class="p-2 font-mono text-xs">boolean</td><td class="p-2 text-gray-600">Emite cuando cambia el estado open</td></tr>
+          <tr><td class="p-2 font-mono text-xs">closed</td><td class="p-2 font-mono text-xs">void</td><td class="p-2 text-gray-600">Emite cuando se cierra</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="text-xs font-semibold text-gray-500 mt-4 mb-2">Slots</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-50">
+          <tr><th class="text-left p-2 font-medium text-gray-600">Selector</th><th class="text-left p-2 font-medium text-gray-600">Descripción</th></tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="p-2 font-mono text-xs">(default)</td><td class="p-2 text-gray-600">Contenido del body</td></tr>
+          <tr><td class="p-2 font-mono text-xs">[gcDialogFooter]</td><td class="p-2 text-gray-600">Footer con acciones</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="space-y-6">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-400">Ejemplos</h2>
+
+    <doc-example title="Básico" [code]="basicCode">
+      <gc-button (click)="dialogOpen.set(true)">Abrir diálogo</gc-button>
+      <gc-dialog title="Confirmar acción" [open]="dialogOpen()" (openChange)="dialogOpen.set($event)">
+        <p class="text-sm text-gray-600">¿Estás seguro de que deseas continuar? Esta operación no se puede deshacer.</p>
+        <div gcDialogFooter class="flex justify-end gap-3">
+          <gc-button variant="outline" (click)="dialogOpen.set(false)">Cancelar</gc-button>
+          <gc-button (click)="dialogOpen.set(false)">Confirmar</gc-button>
+        </div>
+      </gc-dialog>
+    </doc-example>
+
+    <doc-example title="Ancho personalizado" [code]="wideCode">
+      <gc-button variant="outline" (click)="dialogOpen2.set(true)">Diálogo grande</gc-button>
+      <gc-dialog title="Términos y condiciones" maxWidth="40rem" [open]="dialogOpen2()" (openChange)="dialogOpen2.set($event)">
+        <div class="text-sm text-gray-600 space-y-3">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+        <div gcDialogFooter class="flex justify-end gap-3">
+          <gc-button variant="outline" (click)="dialogOpen2.set(false)">Cerrar</gc-button>
+          <gc-button (click)="dialogOpen2.set(false)">Aceptar</gc-button>
+        </div>
+      </gc-dialog>
+    </doc-example>
+  </section>
+</div>
